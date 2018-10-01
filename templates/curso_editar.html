@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Editar/Remover Coordenador{% endblock %}
+
+{% block content %}
+<div class="container animated fadeIn">
+<div class="center ">
+      <form method="POST">
+        {% csrf_token %}
+      <h6 style="margin-top:3%">Editar Coordenador/Curso</h6>
+      <span class="center">Ficha cadastrada</span>
+      <div class="card-panel z-depth-2">
+        <div class="input-field">
+            {{form.curso_nome}}
+            <label for="{{form.curso_nome.id_for_label}}">Curso</label>
+         </div>
+         <div class="input-field">
+            {{form.coordenador}}
+            <label for="{{form.coordenador.id_for_label}}">Coordenador</label>
+         </div>
+        </div>
+      </div>
+        <div class="center">
+            <button class="btn blue waves-effect waves-light" type="submit" id="buttonform">Salvar Edição</button>
+            <!-- Modal Trigger -->
+            <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red" type="submit" id="buttonform">remover coordenador</a>
+        </div><br>
+  </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="center">
+    <div class="modal-content">
+      <h5>Remover relação Coordenador/Curso</h5><br>
+      <p>Você tem certeza que quer remover a relação do coordenador <strong>{{object}}</strong> com este curso ?<br>
+        <strong style="color:red">Atenção!</strong> Essa ação apagará definitivamente esta informação do sistema.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <form method="POST" action="{% url 'sgb:curso_delete' object.id %}">
+        {% csrf_token %}
+        <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat" name="button">Remover</button>
+        <button type="button" class="modal-close waves-effect waves-green btn-flat" name="button">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% if form.errors %}
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Atenção!</h5><br>
+        <div class="center">
+          <span> {{errmsg}} </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Voltar</button>
+      </div>
+  </div>
+{% endif %}
+{% endblock %}

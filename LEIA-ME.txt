@@ -1,0 +1,4 @@
+Mudanças efetuadas:
+
+*Posição de "examinador" no formulario de criação de disponibilidade alterada para topo do formulario
+*Correção de relatórios ao usar titúlo com 220 caracteres

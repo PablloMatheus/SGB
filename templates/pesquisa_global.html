@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Editar/Remover Aluno{% endblock %}
+
+{% block content %}
+
+  <div class="center">
+    <input type="text" id="search" onkeyup="myFunction()" placeholder="Pesquisar &#8981;" style="width: 350px" class="tooltipped" data-position="down" data-delay="300" data-tooltip="Nome ou matrícula de aluno ou professor">
+  </div>
+
+<div class="container">
+<h6>Resultado da pesquisa</h6>
+      <ul id="myUL">
+        {% for aluno in lista_alunos %}
+          <li><a href="{% url 'sgb:aluno_update' aluno.id %}">{{aluno.aluno_matricula}}&nbsp;&nbsp;&nbsp;{{aluno}}</a></li>
+        {% endfor %}
+        {% for professor in lista_professores %}
+          <li><a href="{% url 'sgb:professor_update' professor.id %}">{{professor.professor_matricula}}&nbsp;&nbsp;&nbsp;{{professor}}</a></li>
+        {% endfor %}
+        <li id="demo"></li>
+      </ul>
+      <br><br>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("search");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            if (i != 0){
+              document.getElementById("demo").innerHTML = "";
+            }
+        }
+        else {
+          li[i].style.display = "none";
+          if (i == 0){
+            document.getElementById("demo").innerHTML = "Nenhuma informação encontrada";
+          }
+        }
+    }
+  }
+</script>
+{% endblock %}

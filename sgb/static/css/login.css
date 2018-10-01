@@ -1,0 +1,74 @@
+/* Estilo da Tela de Login */
+body{
+background: #0B396A;
+}
+
+/*Logo Marca*/
+.logo{
+  margin-top: 2%;
+  margin-bottom: 4%;
+}
+/*div Login Box*/
+.login-box{
+  background: #585858;
+}
+/* Div Title Login Box*/
+.top{
+  background: #D6D4D5;
+}
+.top .text{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+/*.........Inputs Login.......*/
+.inputs{
+  padding-top: 3%;
+}
+/* Label Cor e Icons*/
+.input-field label, .input-field i{
+     color: #fff;
+}
+.input-field .prefix.active {
+     color: #fff;
+   }
+/* Labels Color Focus */
+.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label {
+   color: #b5b3b3;
+}
+ /* Labels Underline Focus Color */
+.input-field input[type=text]:focus, .input-field input[type=password]:focus {
+   border-bottom: 1px solid #b5b3b3;
+   box-shadow: 0 1px 0 0 #b5b3b3;
+   color: #fff;
+}
+/* Valid Color */
+.input-field input[type=text].valid, .input-field input[type=password].valid{
+    border-bottom: 1px solid #4caf50;
+   box-shadow: 0 1px 0 0 #4caf50;
+   color: #fff;
+}
+ /* Invalid Color */
+.input-field input[type=text].invalid, .input-field input[type=password].invalid {
+   border-bottom: 1px solid #f44336;
+   box-shadow: 0 1px 0 0 #f44336;
+   color: #fff;
+ }
+/* Button Login and Forgot Password*/
+.medio{
+width:90%;
+border-radius: 8px;
+background: #D5D5D5;
+color: #000;
+}
+.medio:hover{
+  background: #b5b3b3;
+}
+.forgot{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+/* Corpyright Page*/
+.corpyright{
+  color: #fff;
+  margin-top: 8%;
+}

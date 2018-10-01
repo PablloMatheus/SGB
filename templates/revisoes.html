@@ -1,0 +1,169 @@
+{% load staticfiles %}
+
+<style>
+  @media print {
+    body {-webkit-print-color-adjust: exact;}
+  }
+</style>
+<div>
+  <h3 style="text-align: center;"><strong>&nbsp;</strong></h3> &nbsp;
+  <h3><img style="width: 15%; margin-left: 42%; margin-top: -6%;" src="{% static 'logo.jpg' %}" alt="" /></h3>
+  <center><strong>CENTRO UNIVERSIT&Aacute;RIO DE JO&Atilde;O PESSOA</strong><br>
+  <strong>CURSO DE BACHARELADO EM CI&Ecirc;NCIA DA COMPUTA&Ccedil;&Atilde;O</strong><br>
+  <span style="text-decoration: overline;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></span></center>
+<div style="background-color: #E5E4E2;">
+<p style="text-align: center;"><strong>RECOMENDA&Ccedil;&Otilde;ES PARA ENTREGA DA VERS&Atilde;O FINAL<br>
+DO TRABALHO DE CONCLUS&Atilde;O DE CURSO<br>
+– VIA ALUNO (A)/COORDENA&Ccedil;&Atilde;O–</strong></p>
+</div>
+<p style="text-align: justify;"><strong>Observa&ccedil;&atilde;o:</strong></p>
+<p style="text-align: justify;"><strong>Este documento deve ser devolvido &agrave; coordena&ccedil;&atilde;o junto com a vers&atilde;o final do tcc &ndash; que deve ser entregue em cd &ndash; formato pdf &ndash; capa acr&iacute;lica/ devidamente identificado (cd e capa). No prazo de 7 (sete) dias contados da data de defesa do tcc; com a devida assinatura do (a) orientador (a).</strong></p>
+<style>
+table, th, td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+</style>
+<table border="1">
+<tbody>
+<tr>
+<td width="701">
+<p><strong>ALUNO (A): </strong>{{form.titulo_tcc.aluno}}</p>
+</td>
+</tr>
+<tr>
+<td width="701">
+<p><strong>T&Iacute;TULO: </strong>{{form.titulo_tcc}}</p>
+</td>
+</tr>
+<tr>
+<td width="701">
+<p><strong>ORIENTADOR (A): </strong>&nbsp;{{ form.titulo_tcc.orientador }}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<table border="1">
+<tbody>
+<tr>
+<td colspan="2" width="702">
+<p><strong>RECOMENDA&Ccedil;&Otilde;ES:</strong></p><br>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="317">
+{% now "Y" as current_year %}
+<p>Jo&atilde;o Pessoa, {% now " jS \d\e F" %}.</p>
+</td>
+<td width="385"><br>
+<center><p>{{form.orientador}}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<table border="1">
+<tbody>
+<tr>
+<td colspan="2" width="703">
+<p><strong>LIBERA&Ccedil;&Atilde;O PARA ENTREGA EM PDF</strong></p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="703">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="703">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="703">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="312">
+  {% now "Y" as current_year %}
+    <p>Jo&atilde;o Pessoa,_____/_____/{{ current_year }}.</p>
+</td>
+<td width="391"><br>
+<center><p>{{form.orientador}}</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>

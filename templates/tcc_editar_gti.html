@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Editar/Remover TCC{% endblock %}
+
+{% block content %}
+<div class="container animated fadeIn">
+  <div class="center">
+      <form method="POST">
+        {% csrf_token %}
+      <h6 style="margin-top:2%">Editar/Remover Trabalho</h6>
+      <sapn class="center">Trabalho cadastrados</span>
+        <div class="card-panel z-depth-2">
+        <div>
+         <div class="input-field" >
+            {{form.titulo_tcc}}
+            <label for="{{form.titulo_tcc.id_for_label}}">Titulo do Trabalho</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.aluno}}
+            <label for="{{form.aluno.id_for_label}}">Aluno</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.aluno2}}
+            <label for="{{form.aluno.id_for_label}}">Aluno</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.aluno3}}
+            <label for="{{form.aluno.id_for_label}}">Aluno</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.aluno4}}
+            <label for="{{form.aluno.id_for_label}}">Aluno</label>
+         </div>
+        </div>
+        <!-- <div class="input-field col s12">
+          <select name="aluno">
+
+            {% for aluno in aluno %}
+            <option value="{{aluno.pk}}">{{aluno.aluno_nome}}</option>
+            {% endfor %}
+          </select>
+          <label>Aluno</label>
+        </div>
+        <div class="input-field col s12">
+          <select name="aluno2">
+            {% for aluno in aluno %}
+            <option value="{{aluno.pk}}">{{aluno.aluno_nome}}</option>
+            {% endfor %}
+          </select>
+          <label>Aluno</label>
+        </div>
+        <div class="input-field col s12">
+          <select name="aluno3">
+            {% for aluno in aluno %}
+            <option value="{{aluno.pk}}">{{aluno.aluno_nome}}</option>
+            {% endfor %}
+          </select>
+          <label>Aluno</label>
+        </div>
+        <div class="input-field col s12">
+          <select name="aluno4">
+            {% for aluno in aluno %}
+            <option value="{{aluno.pk}}">{{aluno.aluno_nome}}</option>
+            {% endfor %}
+          </select>
+          <label>Aluno</label>
+        </div> -->
+        <div>
+         <div class="input-field" >
+            {{form.orientador}}
+            <label for="{{form.orientador.id_for_label}}">Orientador</label>
+         </div>
+        </div>
+      </div>
+  </div>
+        <div class="center">
+            <button class="btn blue waves-effect waves-light" type="submit" id="buttonform">Salvar</button>
+            <!-- Modal Trigger -->
+            <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red" type="submit" id="buttonform">remover trabalho</a>
+        </div>
+  </form>
+</center>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <center>
+    <div class="modal-content">
+      <h5>Remover Trabalho</h5><br>
+      <p>Você tem certeza que quer remover o trabalho <strong>{{object}}</strong> ?<br>
+        <strong style="color:red">Atenção!</strong> Essa ação apagará definitivamente esta informação do sistema.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <form method="POST" action="{% url 'sgb:tcc_delete' object.id %}">
+        {% csrf_token %}
+        <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat" name="button">Remover</button>
+        <button type="button" class="modal-close waves-effect waves-red btn-flat" name="button">Cancelar</button>
+      </form><br>
+    </div>
+  </center>
+</div>
+{% if form.errors %}
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Atenção!</h5><br>
+        <div class="center">
+          <span> {{errmsg}} </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Voltar</button>
+      </div>
+  </div>
+{% endif %}
+{% endblock %}

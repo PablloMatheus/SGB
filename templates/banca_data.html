@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Agendar Banca{% endblock %}
+
+{% block content %}
+
+<!-- CSS -->
+
+<style media="screen">
+  #bancan{
+    background-color:#5f6c72;
+  }
+  #bancatexn{
+    color: white;
+  }
+
+  #bancauln{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #bancauln li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+  #bancaul{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #bancaul li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+</style>
+
+  <div class="container animated fadeIn" id="show" style="display: none">
+      <form method="GET" action="{% url 'sgb:banca_create' %}">
+        <div class="center">
+          <h6 style="margin-top:2%">Agendar Banca</h6>
+          <span>Data e hora</span>
+        </div>
+        <div class="card-panel z-depth-1">
+          <div class="input-field">
+            <input type="text" class="datepicker" name="data" id="data">
+            <label for="data">Data de Agendamento <span style="color:red">*</span></label>
+          </div>
+          <!-- <div class="input-field">
+            <input type="text" class="time" name="time" id="time">
+            <label for="time">Hora de Agendamento</label>
+          </div> -->
+          <div class="input-field">
+            <select name="time" id="time">
+              <option value="" disabled selected>Horário</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+              <option value="21:00">21:00</option>
+              <option value="21:00">22:00</option>
+            </select>
+            <label for="time">Hora do agendamento <span style="color:red">*</span></label>
+          </div>
+        </div><br>
+        <div class="center">
+          <button class="btn blue waves-effect waves-light" type="submit" onclick="return Validate()">Enviar</button>
+        </div>
+      </form>
+  </div>
+
+  {% if ex1count <= 1 %}
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal">
+        <div class="modal-content center">
+          <h5>Atenção!</h5><br>
+          <div class="center">
+            <span>{{ errmsg }}</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="modal-close btn-flat" name="button">Voltar</button>
+        </div>
+    </div>
+  {% endif %}
+
+  {% if sucess_message %}
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal">
+        <div class="modal-content center">
+          <h5>Atenção!</h5><br>
+          <div class="center">
+            <span>{{sucess_message}}</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+        </div>
+    </div>
+  {% endif %}
+
+  <script type="text/javascript">
+  document.getElementById("bancaul").classList.remove('child-menu');
+  document.getElementById("bancamenu").classList.remove('master-menu');
+    function Validate() {
+      var s1 = document.getElementById("time").value;
+      var s2 = document.getElementById("data").value;
+      if (s1 == "" || s2 == "") {
+        Materialize.toast('Informe data e hora', 2000, 'rounded');
+        // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+        return false;
+      }
+      return true;
+    }
+    // document.getElementById("alunoul").classList.remove('child-menu');
+    // document.getElementById("alunomenu").classList.remove('master-menu');
+  </script>
+{% endblock %}

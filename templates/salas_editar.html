@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cadastrar Aluno{% endblock %}
+
+{% block content %}
+<center class="container animated fadeIn">
+      <form method="POST">
+        {% csrf_token %}
+      <h6 style="margin-top:2%">Editar/Remover Salas</h6>
+      <span class="center">Sala cadastrada</span>
+      <div class="card-panel z-depth-2" style="max-width:800px; margin-bottom: 3%; margin-top: 3%">
+        <div>
+         <div class="input-field" >
+            {{form.blocos}}
+            <label for="{{form.blocos.id_for_label}}">Bloco</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.numero_do_bloco}}
+            {% if form.numero_do_bloco.errors %}
+              <script type="text/javascript">
+                alert('Digite um número de sala válido ou não cadastrado.')
+              </script>
+            {% endif %}
+            <label for="{{form.numero_do_bloco.id_for_label}}">Número da Sala</label>
+         </div>
+        </div>
+      </div>
+        <div class="center">
+            <button class="btn blue waves-effect waves-light" type="submit" id="buttonform">salvar edição</button>
+            <!-- Modal Trigger -->
+            <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red" type="submit" id="buttonform">remover sala</a>
+        </div>
+  </form>
+</center>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <center>
+    <div class="modal-content">
+      <h5>Remover Sala</h5><br>
+      <p>Você tem certeza que quer remover a sala <strong>{{object}}</strong> ?<br>
+        <strong style="color:red">Atenção!</strong> Essa ação apagará definitivamente esta informação do sistema.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <form method="POST" action="{% url 'sgb:salas_delete' object.id %}">
+        {% csrf_token %}
+        <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat" name="button">Remover</button>
+        <button type="button" class="modal-close waves-effect waves-red btn-flat" name="button">Cancelar</button>
+      </form>
+    </div>
+  </center>
+</div>
+{% endblock %}

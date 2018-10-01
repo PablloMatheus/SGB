@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cadastrar Sala{% endblock %}
+
+{% block content %}
+
+<!-- CSS -->
+<style media="screen">
+  #salan{
+    background-color:#5f6c72;
+  }
+  #salatexn{
+    color: white;
+  }
+
+  #salauln{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #salauln li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+  #salaul{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #salaul li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+</style>
+
+
+
+<!-- <center class="container animated fadeIn" style="display:none" id="show"> -->
+      <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                <div id="modal2" class="modal">
+                    <div class="modal-content center">
+                      <h5>Atenção!</h5><br>
+                      <div class="center">
+                        <span>{{ error|escape }}</span>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    <center class="container animated fadeIn" style="display:none" id="show">
+      <h6 style="margin-top:2%">Cadastrar Salas</h6>
+      <span class="center">Ficha de cadastro</span>
+      <div class="card-panel z-depth-2" style="max-width:800px;">
+         <!-- <div class="input-field" >
+            {{form.blocos}}
+            <label for="{{form.blocos.id_for_label}}">Bloco</label>
+         </div> -->
+         <div class="input-field">
+           <select name="blocos" id="id_blocos">
+             <option value="" disabled selected>Selecione o Bloco</option>
+             <option value="EVA">EVA</option>
+             <option value="CT">COMPLEXO DE TECNOLOGIA</option>
+             <option value="B.F">BLOCO F</option>
+           </select>
+           <label>Bloco <span id="valBlocos" style="color:red">*</span></label>
+         </div>
+        <div>
+         <div class="input-field" >
+            <input type="text" name="numero_do_bloco" value="" maxlength="3" required="" id="id_numero_do_bloco">
+            <label for="{{form.numero_do_bloco.id_for_label}}">Número da Sala <span id="valNumSala" style="color:red">*</span></label>
+         </div>
+        </div>
+      </div>
+        <div class="center">
+            <button class="btn blue waves-effect waves-light" type="submit" name="btn" onclick="return Validate()" value="s" id="buttonform">Salvar</button>
+            <button class="btn teal waves-effect waves-light" name="btn2" type="submit" onclick="return Validate()" id="buttonform" >Salvar e Adicionar Outro</button>
+        </div>
+  </form>
+</center>
+</div>
+
+{% if sucess_message %}
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Sucesso!</h5><br>
+        <div class="center">
+          <span>{{sucess_message}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+      </div>
+  </div>
+{% endif %}
+
+<script type="text/javascript">
+
+document.getElementById("salaul").classList.remove('child-menu');
+document.getElementById("salamenu").classList.remove('master-menu');
+
+function Validate(){
+  var blocos = document.getElementById("id_blocos").value;
+  if(blocos ==""){
+    Materialize.toast('O campo de Bloco deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valBlocos').html('<b>*</b>').css('color','red');
+    document.getElementById("id_blocos").focus();
+    return false;
+  }
+  var NumSalas = document.getElementById("id_numero_do_bloco").value;
+  if (NumSalas == ""){
+    Materialize.toast('O campo de Sala deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valNumSala').html('<b>*</b>').css('color','red');
+    document.getElementById("id_numero_do_bloco").focus();
+    return false;
+  }
+  if (/[^\d]/.test(document.getElementById("id_numero_do_bloco").value)){
+    Materialize.toast('O campo de Sala deve conter apenas números',2000,'rounded');
+    $('#valNumSala').html('<b>*</b>').css('color','red');
+    document.getElementById("id_numero_do_bloco").focus();
+    return false;
+  }
+  return true;
+}
+$(document).ready(function(){
+  $('#id_blocos').on("change keyup paste",function(){
+    $('#valBlocos').html('');
+  })
+  $('#id_numero_do_bloco').on("change keyup paste",function(){
+    $('#valNumSala').html('');
+  })
+}
+)
+</script>
+
+{% endblock %}

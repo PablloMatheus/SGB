@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Editar/Remover Banca{% endblock %}
+
+{% block content %}
+<div class="container animated fadeIn">
+  <div class="center">
+      <form method="POST">
+        {% csrf_token %}
+      <h6 style="margin-top:2%">Editar Banca</h6>
+      <p class="center" style="margin-top:-1px">Banca cadastrada</p>
+      <!-- Dropdown Trigger -->
+      <a class='dropdown-button2 btn-floating amber darken-4 waves-effect waves-light' href='#' data-activates='dropdown3' style="margin-bottom: -10px;">
+        <i class="material-icons navicons">print</i>
+      </a>
+      <!-- Dropdown Structure -->
+      <ul id='dropdown3' class='dropdown-content'>
+        <li><a href="{% url 'sgb:testerel' object.id %}" class="center">Relatórios</a></li>
+        <li><a href="{% url 'sgb:etiqueterel' object.id %}" class="center">Etiquetas</a></li>
+      </ul>
+      <div class="card-panel z-depth-2 tooltipped" style="margin-bottom: 3%; margin-top: 3%" data-tooltip="Não é possível editar os campos por questões de integridade do sistema. Desmarque e marque a banca novamente!" data-position="top">
+        <div class="input-field">
+          <select disabled>
+            <option>{{object.titulo_tcc}}</option>
+          </select>
+          <label for="{{object.titulo_tcc.id_for_label}}">Titulo TCC</label>
+        </div>
+        <div class="input-field">
+          <select disabled>
+            <option>{{object.sala}}</option>
+          </select>
+          <label for="{{object.sala.id_for_label}}">Sala</label>
+        </div>
+        <div>
+         <!-- <div class="input-field" >
+            {{form.hora_inicio}}
+            {% if form.hora_inicio.errors %}
+              <script type="text/javascript">
+                alert('Digite uma hora válida! (Ex: 14:00 ~ 22:00).')
+              </script>
+            {% endif %}
+            <label for="{{form.hora_inicio.id_for_label}}">Hora Início</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.hora_termino}}
+            {% if form.hora_termino.errors %}
+              <script type="text/javascript">
+                alert('Digite uma hora válida! (Ex: 14:00 ~ 22:00).')
+              </script>
+            {% endif %}
+            <label for="{{form.hora_termino.id_for_label}}">Hora Termino</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.data_banca}}
+            {% if form.data_banca.errors %}
+              <script type="text/javascript">
+                alert('Data inválida (Ex:Mês/Dia/Ano).')
+              </script>
+            {% endif %}
+            <label for="{{form.data_banca.id_for_label}}">Data</label>
+         </div>
+        </div>
+        <div> -->
+        <div class="input-field">
+          <select disabled>
+            <option>{{object.examinador_1}}</option>
+          </select>
+          <label for="{{object.examinador_1.id_for_label}}">Examinador</label>
+        </div>
+        </div>
+        <div class="input-field">
+          <select disabled>
+            <option>{{object.examinador_2}}</option>
+          </select>
+          <label for="{{object.examinador_2.id_for_label}}">Examinador</label>
+        </div>
+      </div>
+        <div class="center">
+            <!-- Modal Trigger -->
+            <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red" type="submit" id="buttonform">desmarcar banca</a>
+        </div>
+  </form>
+</div>
+</div>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <center>
+    <div class="modal-content">
+      <h5>Desmarcar Banca</h5><br>
+      <p>Você tem certeza que quer desmarcar a banca <strong>{{object}}</strong> ?<br>
+        <strong style="color:red">Atenção!</strong> Essa ação apagará definitivamente esta informação do sistema.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <form method="POST" action="{% url 'sgb:banca_delete' object.id %}">
+        {% csrf_token %}
+        <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat" name="button">Desmarcar</button>
+        <button type="button" class="modal-close waves-effect waves-red btn-flat" name="button">Cancelar</button>
+      </form>
+    </div>
+  </center>
+</div>
+{% endblock %}

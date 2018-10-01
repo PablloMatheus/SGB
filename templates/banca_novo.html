@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cadastrar Banca{% endblock %}
+
+{% block content %}
+
+<!-- CSS -->
+
+<style media="screen">
+  #bancan{
+    background-color:#5f6c72;
+  }
+  #bancatexn{
+    color: white;
+  }
+
+  #bancauln{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #bancauln li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+  #bancaul{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #bancaul li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+</style>
+
+<div class="container" style="display:none" id="show">
+<!-- <div class="container animated fadeIn" style="display:none" id="show"> -->
+<div class="center">
+      <form method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                <div id="modal2" class="modal">
+                    <div class="modal-content center">
+                      <h5>Atenção!</h5><br>
+                      <div class="center">
+                        <span>{{ error|escape }}</span>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+      <h6 style="margin-top:2%" class="center">Cadastrar Banca</h6>
+      <div class="center">
+        <span>Ficha banca</span>
+      </div>
+      <div class="card-panel z-depth-2">
+        <div class="input-field">
+          <select name="titulo_tcc" id="">
+            <option value="" disabled selected>Selecionar Trabalho</option>
+              {% for tcc in tcc %}
+                <option id="" value="{{ tcc.id }}">{{ tcc }}</option>
+              {% endfor %}
+          </select>
+          <label>Trabalho <span style="color:red">*</span></label>
+        </div>
+        <div class="input-field">
+          <select name="sala" id="">
+            <option value="" disabled selected>Selecionar Sala</option>
+              {% for sala in sala %}
+                <option class="" value="{{ sala.id }}">{{ sala }}</option>
+              {% endfor %}
+          </select>
+          <label>Sala <span style="color:red">*</span></label>
+        </div>
+        <div class="input-field">
+          <select name="examinador_1" id="ex1">
+            <option value="" disabled selected>Selecionar Examinador</option>
+              {% for examinador in ex1 %}
+                <option id="{{ examinador.hora_inicio }}" value="{{ examinador.id }}">{{ examinador.examinador }}</option>
+              {% endfor %}
+          </select>
+          <label>Examinador <span style="color:red">*</span></label>
+        </div>
+        <div class="input-field">
+          <select name="examinador_2" id="ex2">
+            <option value="" disabled selected>Selecionar Examinador</option>
+              {% for examinador in ex1 %}
+                <option class="" value="{{ examinador.id }}">{{ examinador.examinador }}</option>
+              {% endfor %}
+          </select>
+          <label>Segundo Examinador <span style="color:red">*</span></label>
+        </div>
+      </div>
+  </div>
+      <span id="resultado"></span>
+      <div class="center">
+          <button class="btn blue waves-effect waves-light" type="submit" onclick="return Validate()" name="btn" value="s" id="buttonform">Salvar</button>
+          <button class="btn teal waves-effect waves-light" name="btn3" type="submit" onclick="return Validate()" id="buttonform2" >Salvar e Adicionar Outro</button>
+      </div>
+  </form><br>
+</div>
+
+{% if erro == 1 %}
+  <!-- Modal Structure -->
+<div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Sucesso!</h5><br>
+        <div class="center">
+          <span>{{errmsg}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Voltar</button>
+      </div>
+  </div>
+{% endif %}
+
+{% if sucess_message %}
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Sucesso!</h5><br>
+        <div class="center">
+          <span>{{sucess_message}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+      </div>
+  </div>
+{% endif %}
+
+<script type="text/javascript">
+
+document.getElementById("bancaul").classList.remove('child-menu');
+document.getElementById("bancamenu").classList.remove('master-menu');
+
+  function Validate() {
+  			var s1 = document.getElementById("ex1").value;
+  			var s2 = document.getElementById("ex2").value;
+  			if (s1 == s2 && s1 != "" && s2 != "") {
+  				Materialize.toast('Selecione examinadores&nbsp;<b>diferentes</b>', 2000, 'rounded');
+  				// $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+  				location.href = "#show";
+  				return false;
+  			}else {
+    			if (s1 == "" || s2 == "") {
+    				Materialize.toast('Selecione examinadores', 2000, 'rounded');
+    				// $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+    				location.href = "#show";
+    				return false;
+    			}
+        }
+  			return true;
+  		}
+</script>
+
+
+
+{% endblock %}

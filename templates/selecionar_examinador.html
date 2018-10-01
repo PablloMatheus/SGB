@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cadastrar Banca{% endblock %}
+
+{% block content %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<center class="container">
+      <form method="POST">
+        {% csrf_token %}
+      <h5 style="margin-top:3%">Cadastrar Banca</h5>
+      <p class="center">Ficha examinador</p>
+      <div class="card-panel z-depth-2" style="max-width:800px; margin-bottom: 3%; margin-top: 3%">
+        {% for professor in lista_disp %}
+          {% if professor.disp.data = form.data_banca %}
+            {% if professor.disp.hora_inicio <= form.hora_inicio %}
+        <div>
+         <div class="input-field" >
+            {{professor}}
+            <label for="{{form.examinador_1.id_for_label}}">Examinador 1</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{professor}}
+            <label for="{{form.examinador_2.id_for_label}}">Examinador 2</label>
+         </div>
+        </div>
+      </div>
+        <div class="center">
+            <button class="btn blue waves-effect waves-light" type="submit" id="buttonform">Salvar</button>
+        </div>
+  </form>
+</center>
+</div>

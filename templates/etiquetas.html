@@ -1,0 +1,200 @@
+{% load staticfiles %}
+
+<style>
+  @media print {
+    body {-webkit-print-color-adjust: exact;}
+  }
+table, th, td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+<body onload="window.print(); history.go(-1)">
+<table border="1">
+<tbody>
+<tr>
+<td colspan="2" width="472">
+<p><img style="width: 15%; margin-left: 42%; margin-top: 0%" src="{% static 'logo.jpg' %}" alt="" /><br>
+<center><strong style="text-transform: uppercase;">{{form.titulo_tcc.aluno.curso}}</strong><br>
+<center>Banca de {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %}- {{form.titulo_tcc.aluno.periodo}}<br>
+<center>Semestre {{ form.data_banca.year }}.{% if form.data_banca.month > 6 %}2{% else %}1{% endif %}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Aluno(a):</strong></p>
+</td>
+<td width="400">
+<p>&nbsp;{{ form.titulo_tcc.aluno }} {% if form.titulo_tcc.aluno2 == None %} {% else %} , {{ form.titulo_tcc.aluno2 }} {% endif %} {% if form.titulo_tcc.aluno3 == None %} {% else %} , {{ form.titulo_tcc.aluno3 }} {% endif %} {% if form.titulo_tcc.aluno4 == None %} {% else %} , {{ form.titulo_tcc.aluno4 }} {% endif %}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Orientador(a): </strong></p>
+</td>
+<td width="321">
+<p>&nbsp;PROF. {% if form.titulo_tcc.orientador.formacao == None %}{% else %}{{form.titulo_tcc.orientador.formacao}}. {% endif %}{{ form.titulo_tcc.orientador }}</p>
+</td>
+</tr>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Data:</strong></p>
+</td>
+<td width="321">
+<p>&nbsp;{% if form.data_banca.day < 10 %}0{{ form.data_banca.day }}{% else %}{{ form.data_banca.day }}{% endif %}/{% if form.data_banca.month < 10 %}0{{ form.data_banca.month }}{% else %}{{ form.data_banca.month }}{% endif %}/{{ form.data_banca.year }}</p>
+</td>
+</tr>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Hora:</strong></p>
+</td>
+<td width="321">
+<p>&nbsp;{{form.hora_inicio}}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+<table border="1">
+<tbody>
+<tr>
+<td colspan="2" width="472">
+<p><img style="width: 15%; margin-left: 42%; margin-top: 0%" src="{% static 'logo.jpg' %}" alt="" />
+<center><strong style="text-transform: uppercase;">{{form.titulo_tcc.aluno.curso}}</strong>
+<center>Banca de {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %}- {{form.titulo_tcc.aluno.periodo}}<br>
+<center>Semestre {{ form.data_banca.year }}.{% if form.data_banca.month > 6 %}2{% else %}1{% endif %}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Aluno(a):</strong></p>
+</td>
+<td width="400">
+<p>&nbsp;{{ form.titulo_tcc.aluno }} {% if form.titulo_tcc.aluno2 == None %} {% else %} , {{ form.titulo_tcc.aluno2 }} {% endif %} {% if form.titulo_tcc.aluno3 == None %} {% else %} , {{ form.titulo_tcc.aluno3 }} {% endif %} {% if form.titulo_tcc.aluno4 == None %} {% else %} , {{ form.titulo_tcc.aluno4 }} {% endif %}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Examinador(a) 1: </strong></p>
+</td>
+<td width="127">
+<p>&nbsp;PROF. {% if object.examinador_1.examinador.formacao == None %}{% else %}{{ object.examinador_1.examinador.formacao }}. {% endif %}{{form.examinador_1.examinador}}</p>
+</td>
+</tr>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Data:</strong></p>
+</td>
+<td width="321">
+<p>&nbsp;{% if form.data_banca.day < 10 %}0{{ form.data_banca.day }}{% else %}{{ form.data_banca.day }}{% endif %}/{% if form.data_banca.month < 10 %}0{{ form.data_banca.month }}{% else %}{{ form.data_banca.month }}{% endif %}/{{ form.data_banca.year }}</p>
+</td>
+</tr>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Hora:</strong></p>
+</td>
+<td width="127">
+<p>&nbsp;{{form.hora_inicio}}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+<table border="1">
+<tbody>
+<tr>
+<td colspan="2" width="472">
+<p><img style="width: 15%; margin-left: 42%; margin-top: 0%" src="{% static 'logo.jpg' %}" alt="" /><br>
+<center><strong style="text-transform: uppercase;">{{form.titulo_tcc.aluno.curso}}</strong><br>
+<center>Banca de {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %}- {{form.titulo_tcc.aluno.periodo}}<br>
+<certer>Semestre {{ form.data_banca.year }}.{% if form.data_banca.month > 6 %}2{% else %}1{% endif %}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Aluno(a):</strong></p>
+</td>
+<td width="400">
+<p>&nbsp;{{ form.titulo_tcc.aluno }} {% if form.titulo_tcc.aluno2 == None %} {% else %} , {{ form.titulo_tcc.aluno2 }} {% endif %} {% if form.titulo_tcc.aluno3 == None %} {% else %} , {{ form.titulo_tcc.aluno3 }} {% endif %} {% if form.titulo_tcc.aluno4 == None %} {% else %} , {{ form.titulo_tcc.aluno4 }} {% endif %}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Examinador(a) 2: </strong></p>
+</td>
+<td width="321">
+<p>&nbsp;PROF. {% if object.examinador_2.examinador.formacao == None %}{% else %}{{ object.examinador_2.examinador.formacao }}. {% endif %}{{form.examinador_2.examinador}}</p>
+</td>
+</tr>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Data:</strong></p>
+</td>
+<td width="321">
+<p>&nbsp;{% if form.data_banca.day < 10 %}0{{ form.data_banca.day }}{% else %}{{ form.data_banca.day }}{% endif %}/{% if form.data_banca.month < 10 %}0{{ form.data_banca.month }}{% else %}{{ form.data_banca.month }}{% endif %}/{{ form.data_banca.year }}</p>
+</td>
+</tr>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Hora:</strong></p>
+</td>
+<td width="321">
+<p>&nbsp;{{form.hora_inicio}}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+<table border="1">
+<tbody>
+<tr>
+<td colspan="2" width="472">
+<p><img style="width: 15%; margin-left: 42%; margin-top: 0%" src="{% static 'logo.jpg' %}" alt="" /><br>
+<center><strong style="text-transform: uppercase;">{{form.titulo_tcc.aluno.curso}}</strong><br>
+<center>Banca de {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %}- {{form.titulo_tcc.aluno.periodo}}<br>
+<certer>Semestre {{ form.data_banca.year }}.{% if form.data_banca.month > 6 %}2{% else %}1{% endif %}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Aluno(a):</strong></p>
+</td>
+<td width="400">
+<p>&nbsp;{{ form.titulo_tcc.aluno }} {% if form.titulo_tcc.aluno2 == None %} {% else %} , {{ form.titulo_tcc.aluno2 }} {% endif %} {% if form.titulo_tcc.aluno3 == None %} {% else %} , {{ form.titulo_tcc.aluno3 }} {% endif %} {% if form.titulo_tcc.aluno4 == None %} {% else %} , {{ form.titulo_tcc.aluno4 }} {% endif %}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;T&iacute;tulo:</strong></p>
+</td>
+<td width="321">
+<p style="text-align: justify;"> {{ form.titulo_tcc.titulo_tcc }}</p>
+</td>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Orientador:</strong></p>
+</td>
+<td width="321">
+<p>&nbsp;PROF. {% if form.titulo_tcc.orientador.formacao == None %}{% else %}{{form.titulo_tcc.orientador.formacao}}. {% endif %}{{ form.titulo_tcc.orientador }}</p>
+</td>
+<tr>
+<td rowspan="2" width="127">
+<p><strong>&nbsp;Examinadores:</strong></p>
+</td>
+<td width="321">
+<p>&nbsp;PROF. {% if object.examinador_1.examinador.formacao == None %}{% else %}{{ object.examinador_1.examinador.formacao }}. {% endif %}{{form.examinador_1.examinador}}</p>
+</td>
+</tr>
+<tr>
+<td width="321">
+<p>&nbsp;PROF. {% if object.examinador_2.examinador.formacao == None %}{% else %}{{ object.examinador_2.examinador.formacao }}. {% endif %}{{form.examinador_2.examinador}}</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1">
+<tbody>
+<tr>
+<td width="127">
+<p><strong>&nbsp;Data:</strong> {% if form.data_banca.day < 10 %}0{{ form.data_banca.day }}{% else %}{{ form.data_banca.day }}{% endif %}/{% if form.data_banca.month < 10 %}0{{ form.data_banca.month }}{% else %}{{ form.data_banca.month }}{% endif %}/{{ form.data_banca.year }}</p>
+</td>
+<td width="248">
+<p><strong>&nbsp; Hora:</strong> {{form.hora_inicio}}</p>
+</td>
+<td width="149">
+<p><strong>&nbsp;Local:</strong> {{ form.sala }}</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always"></div>
+</body>

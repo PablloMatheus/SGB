@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Remover Usuário{% endblock %}
+
+{% block content %}
+<div class="container animated fadeIn">
+  <div class="center">
+      <form method="POST">
+        {% csrf_token %}
+      <h6 style="margin-top:3%">Remover Usuário</h6>
+      <span class="center">Usuário cadastrado {{object}}</span>
+      <div class="card-panel z-depth-2" style="margin-bottom: 3%; margin-top: 3%">
+         <div class="input-field" >
+            {{form.first_name}}
+            <label for="{{form.titulo_tcc.id_for_label}}">Nome</label>
+         </div>
+         <div class="input-field" >
+            {{form.last_name}}
+            <label for="{{form.aluno.id_for_label}}">Sobrenome</label>
+         </div>
+         <div class="input-field" >
+            {{form.email}}
+            <label for="{{form.email.id_for_label}}">Email</label>
+         </div>
+         <div class="input-field" >
+            {{form.username}}
+            <label for="{{form.username.id_for_label}}">Usuário</label>
+         </div>
+         <div class="input-field" >
+            <input class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Senha inicial predefinida: 123456" id="id_password" name="password" required="" type="password" value="123456" readonly="readonly">
+            <label for="{{form.password.id_for_label}}">Senha</label>
+         </div>
+      </div>
+      {% if user == object  %}
+      <div class="center">
+          <!-- Modal Trigger -->
+          <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red btn disabled" type="submit" id="buttonform">remover usuário</a>
+      </div><br>
+      {% else %}
+        <div class="center">
+            <!-- Modal Trigger -->
+            <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red" type="submit" id="buttonform">remover usuário</a>
+        </div><br>
+      {% endif %}
+  </form>
+</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <center>
+      <div class="modal-content">
+        <h5>Remover Secretária</h5><br>
+        <p>Você tem certeza que quer remover a secretária <strong>{{object}}</strong> ?<br>
+          <strong style="color:red">Atenção!</strong> Essa ação apagará definitivamente esta informação do sistema.
+        </p>
+      </div>
+    <div class="modal-footer">
+      <form method="POST" action="{% url 'sgb:user_delete' object.id %}">
+        {% csrf_token %}
+        <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat" name="button">Remover</button>
+        <button type="button" class="modal-close waves-effect waves-red btn-flat" name="button">Cancelar</button>
+      </form>
+    </div>
+  </center>
+</div>
+
+{% endblock %}

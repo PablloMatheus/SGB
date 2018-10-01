@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cadastrar Disponibilidade{% endblock %}
+
+{% block content %}
+
+<!-- CSS -->
+
+<style media="screen">
+  #dispn{
+    background-color:#5f6c72;
+  }
+  #disptexn{
+    color: white;
+  }
+  #professouln{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #professouln li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+  #professoul{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #professoul li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+
+</style>
+
+<style media="screen">
+  label{
+    color: black;
+  }
+</style>
+<div class="container">
+<div class="center animated fadeIn" id="show">
+    <form method="POST">
+       {% csrf_token %}
+      <h6 style="margin-top:2%" class="center">Cadastrar Disponibilidade</h6>
+      <div class="center">
+        <span>Ficha de cadastro</span>
+      </div>
+      <div class="card-panel z-depth-2">
+        <div class="input-field">
+          <select name="examinador">
+            <option value="" disabled selected>---------</option>
+            {% for professor in professor %}
+            <option value="{{professor.pk}}">{{professor.professor_nome}}</option>
+            {% endfor %}
+          </select>
+          <label>Examinador <span style="color:red">*</span></label>
+        </div>
+        <div class="input-field">
+          {{form.data}}
+          {% if form.data_banca.errors %}
+            <script type="text/javascript">
+              alert('Data inválida (Ex:Mês/Dia/Ano).')
+            </script>
+          {% endif %}
+          <label for="{{form.data.id_for_label}}">Data da banca <span style="color:red">*</span></label>
+        </div>
+        <p>Selecione os horários em que o professor estará disponível: <span style="color:red">*</span></p>
+
+        <div class="row">
+          <div class="col s6">
+              <p>
+                <input type="checkbox" id="select_all" name="select_all" class="filled-in"/>
+                <label for="select_all" style="color: teal">Marcar Todos</label>
+              </p>
+              <p>
+                <input type="hidden" name="14" value="off" checked="checked" />
+                <input type="checkbox" class="checkbox" name="14" value="14" id="14" />
+                <label for="14">14:00</label>
+              </p>
+              <p>
+                <input type="hidden" name="15" value="off" checked="checked" />
+                <input type="checkbox" class="checkbox"  name="15" value="15" id="15" />
+                <label for="15">15:00</label>
+              </p>
+              <p>
+                <input type="hidden" name="16" value="off" checked="checked" />
+                <input type="checkbox" class="checkbox"  name="16" value="16" id="16" />
+                <label for="16">16:00</label>
+              </p>
+              <p>
+                <input type="hidden" name="17" value="off" checked="checked" />
+                <input type="checkbox" class="checkbox"  name="17" value="17" id="17" />
+                <label for="17">17:00</label>
+              </p>
+            </div>
+            <div class="col s6">
+                <p>
+                  <input type="hidden" name="18" value="off" checked="checked" />
+                  <input type="checkbox" class="checkbox"  name="18" value="18" id="18" />
+                  <label for="18">18:00</label>
+                </p>
+                <p>
+                  <input type="hidden" name="19" value="off" checked="checked" />
+                  <input type="checkbox" class="checkbox"  name="19" value="19" id="19" />
+                  <label for="19">19:00</label>
+                </p>
+                <p>
+                  <input type="hidden" name="20" value="off" checked="checked" />
+                  <input type="checkbox" class="checkbox"  name="20" value="20" id="20" />
+                  <label for="20">20:00</label>
+                </p>
+                <p>
+                  <input type="hidden" name="21" value="off" checked="checked" />
+                  <input type="checkbox" class="checkbox"  class="checkbox"  name="21" value="21" id="21" />
+                  <label for="21">21:00</label>
+                </p>
+                <p>
+                  <input type="hidden" name="22" value="off" checked="checked" />
+                  <input type="checkbox" class="checkbox"  name="22" value="22" id="22" />
+                  <label for="22">22:00</label>
+                </p>
+            </div>
+          </div>
+        </div>
+    <div class="center">
+        <button class="btn blue waves-effect waves-light" type="submit" onclick="return Validate()" name="btn" value="s" id="buttonform">Salvar</button>
+      <button class="btn teal waves-effect waves-light" name="btn4" type="submit" id="buttonform" >Salvar e Adicionar Outro</button>
+    </div>
+  </form>
+</div>
+</div>
+
+{% if erro %}
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Atenção!</h5><br>
+        <div class="center">
+          <span> {{errmsg}} </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Voltar</button>
+      </div>
+  </div>
+{% endif %}
+
+{% if sucess_message %}
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Sucesso!</h5><br>
+        <div class="center">
+          <span>{{sucess_message}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+      </div>
+  </div>
+{% endif %}
+
+<script type="text/javascript">
+
+document.getElementById("professoul").classList.remove('child-menu');
+document.getElementById("professomenu").classList.remove('master-menu');
+
+  // Marcar Todos Checkboxes da página
+
+  //select all checkboxes
+  $("#select_all").change(function(){  //"select all" change
+      $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+  });
+
+  //".checkbox" change
+  $('.checkbox').change(function(){
+      //uncheck "select all", if one of the listed checkbox item is unchecked
+      if(false == $(this).prop("checked")){ //if this item is unchecked
+          $("#select_all").prop('checked', false); //change "select all" checked status to false
+      }
+      //check "select all" if all checkbox items are checked
+      if ($('.checkbox:checked').length == $('.checkbox').length ){
+          $("#select_all").prop('checked', true);
+      }
+  });
+
+  // function checkAll(bx) {
+  // var cbs = document.getElementsByTagName('input');
+  //   for(var i=0; i < cbs.length; i++) {
+  //     if(cbs[i].type == 'checkbox') {
+  //       cbs[i].checked = bx.checked;
+  //     }
+  //   }
+  // }
+</script>
+{% endblock %}
+
+<!-- <div>
+<div class="input-field" >
+  {{form.hora_inicio}}
+  {% if form.hora_inicio.errors %}
+  <script type="text/javascript">
+  alert('Digite uma hora válida! (Ex: 14:00 ~ 22:00).')
+  </script>
+  {% endif %}
+  <label for="{{form.hora_inicio.id_for_label}}">Hora Inicio</label>
+</div>
+</div>
+<div>
+  <div class="input-field" >
+    {{form.hora_termino}}
+    {% if form.hora_inicio.errors %}
+    <script type="text/javascript">
+    alert('Digite uma hora válida! (Ex: 14:00 ~ 22:00).')
+    </script>
+    {% endif %}
+    <label for="{{form.hora_termino.id_for_label}}">Hora Termino</label>
+  </div>
+</div>
+</div> -->

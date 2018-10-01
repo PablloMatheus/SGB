@@ -1,0 +1,706 @@
+{% load staticfiles %}
+
+<style>
+  @media print {
+    body {-webkit-print-color-adjust: exact;}
+  }
+</style>
+<h3><img style="width: 15%; margin-left: 42%;" src="{% static 'logo.jpg' %}" alt="" /></h3>
+<center><strong>CENTRO UNIVERSIT&Aacute;RIO DE JO&Atilde;O PESSOA</strong><br>
+<strong style="text-transform: uppercase;">CURSO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} TECNOLÓGICO EM {% else %} DE BACHARELADO EM {% endif %} {{form.titulo_tcc.aluno.curso}}</strong><br>
+<span style="text-decoration: overline;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></span></center>
+<div style="background-color: #E5E4E2;">
+<center><spam style="text-align: center;"><strong>RECOMENDA&Ccedil;&Otilde;ES PARA ENTREGA DA VERS&Atilde;O FINAL</strong><br>
+DO TRABALHO DE CONCLUS&Atilde;O DE CURSO</spam></center>
+</div>
+<style>
+table, th, td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+</style>
+<body onload="window.print(); history.go(-1)">
+<br>
+<table border="1">
+<tbody>
+<tr>
+<td width="701">
+{% if form.titulo_tcc.aluno4 == None %}{% else %}
+{% endif %}
+<spam><strong>ALUNO (A): </strong>{{ form.titulo_tcc.aluno }} {% if form.titulo_tcc.aluno2 == None %} {% else %} , {{ form.titulo_tcc.aluno2 }} {% endif %} {% if form.titulo_tcc.aluno3 == None %} {% else %} , {{ form.titulo_tcc.aluno3 }} {% endif %} {% if form.titulo_tcc.aluno4 == None %} {% else %} , {{ form.titulo_tcc.aluno4 }} {% endif %}</spam><br>
+</td>
+</tr>
+<tr>
+<td width="701">
+<p><strong>T&Iacute;TULO: </strong>{{ form.titulo_tcc.titulo_tcc }}</p>
+</td>
+</tr>
+<tr>
+<td width="701">
+<p><strong>ORIENTADOR (A): </strong>PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{ form.titulo_tcc.orientador }}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<table border="1">
+<tbody>
+<tr>
+<td colspan="2" width="702">
+<p><strong>RECOMENDA&Ccedil;&Otilde;ES:</strong></p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="702">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="317">
+<!--  {% now "Y" as current_year %}  {% now " jS \d\e F" %}-->
+<center><p>Jo&atilde;o Pessoa, {{ form.data_banca }}.</p>
+</td>
+<td width="385"><br>
+<center><p>PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}}<br>
+<font size="3"><strong>ASSINATURA</strong></font><p></center>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<table border="1">
+<tbody>
+<tr>
+<td colspan="2" width="703">
+<p><strong>LIBERA&Ccedil;&Atilde;O PARA ENTREGA EM PDF</strong></p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="703">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="703">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="703">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="312">
+  {% now "Y" as current_year %}
+    <center><p>Jo&atilde;o Pessoa,_____/_____/{{ current_year }}.</p>
+</td>
+<td width="391"><br>
+<center><p>PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}}<br>
+<font size="3"><strong>ASSINATURA</strong></font><p></center>
+</td>
+</tr>
+</tbody>
+</table><br>
+<spam style="text-align: justify;"><strong>OBSERVA&Ccedil;&Atilde;O:</strong></spam>
+<p style="text-align: justify;"><strong>ESTE DOCUMENTO DEVE SER DEVOLVIDO &Agrave; COORDENA&Ccedil;&Atilde;O JUNTO COM A VERS&Atilde;O FINAL DO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %} &ndash; QUE DEVE SER ENTREGUE EM CD &ndash; FORMATO PDF &ndash; CAPA ACR&Iacute;LICA/ DEVIDAMENTE IDENTIFICADO (CD E CAPA). NO PRAZO DE 7 (SETE) DIAS CONTADOS DA DATA DE DEFESA DO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %}; COM A DEVIDA ASSINATURA DO (A) ORIENTADOR (A).</strong></p>
+<div style="page-break-after: always"></div>
+
+<h3><img style="width: 15%; margin-left: 42%;" src="{% static 'logo.jpg' %}" alt="" /></h3>
+<center><strong>CENTRO UNIVERSIT&Aacute;RIO DE JO&Atilde;O PESSOA</strong><br>
+<strong style="text-transform: uppercase;">CURSO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} TECNOLÓGICO EM {% else %} DE BACHARELADO EM {% endif %} {{form.titulo_tcc.aluno.curso}}</strong><br>
+<span style="text-decoration: overline;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></span></center>
+<div style="background-color: #E5E4E2;">
+<center><span style="text-align: center;"><strong>{% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %}DEFESA DO RELAT&Oacute;RIO T&Eacute;CNICO CIENT&Iacute;FICO{% else %}DEFESA DO TRABALHO DE CONCLUS&Atilde;O DE CURSO{% endif %}</strong></span><br>
+<strong>(ATA)</strong></center>
+</div>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: justify; line-height: 180%; text-transform: uppercase;">Ao {% if form.data_banca.day == 1 %}primeiro {% elif form.data_banca.day == 2 %}segundo {% elif form.data_banca.day == 3 %}terceiro {% elif form.data_banca.day == 4 %}quarto {% elif form.data_banca.day == 5 %}quinto {% elif form.data_banca.day == 6 %}sexto {% elif form.data_banca.day == 7 %}sétimo {% elif form.data_banca.day == 8 %}oitavo {% elif form.data_banca.day == 9 %}nono {% elif form.data_banca.day == 10 %}décimo {% elif form.data_banca.day == 11 %}décimo primeiro {% elif form.data_banca.day == 12 %}décimo segundo {% elif form.data_banca.day == 13 %}décimo terceiro {% elif form.data_banca.day == 14 %}décimo quarto {% elif form.data_banca.day == 15 %}décimo quinto {% elif form.data_banca.day == 16 %}décimo sexto {% elif form.data_banca.day == 17 %}décimo sétimo {% elif form.data_banca.day == 18 %}décimo oitavo {% elif form.data_banca.day == 19 %}décimo nono {% elif form.data_banca.day == 20 %}viségimo {% elif form.data_banca.day == 21 %}vigésimo primeiro {% elif form.data_banca.day == 22 %}vigésimo segundo {% elif form.data_banca.day == 23 %}vigésimo terceiro {% elif form.data_banca.day == 24 %}vigésimo quarto {% elif form.data_banca.day == 25 %}vigésimo quinto {% elif form.data_banca.day == 26 %}vigésimo sexto {% elif form.data_banca.day == 27 %}vigésimo sétimo {% elif form.data_banca.day == 28 %}vigésimo oitavo {% elif form.data_banca.day == 29 %}vigésimo nono {% elif form.data_banca.day == 30 %}trigésimo {% else %}trigésimo primeiro{% endif %} dia do mês de {% if form.data_banca.month == 1 %}janeiro {% elif form.data_banca.month == 2 %}fevereiro {% elif form.data_banca.month == 3 %}março {% elif form.data_banca.month == 4 %}abril {% elif form.data_banca.month == 5 %}maio {% elif form.data_banca.month == 6 %}junho {% elif form.data_banca.month == 7 %}julho {% elif form.data_banca.month == 8 %}agosto {% elif form.data_banca.month == 9 %}setembro {% elif form.data_banca.month == 10 %}outubro {% elif form.data_banca.month == 11 %}novembro {% else %}dezembro{% endif %} de {% if form.data_banca.year == 2017 %}dois mil e dezessete {% elif form.data_banca.year == 2018 %}dois mil e dezoito {% elif form.data_banca.year == 2019 %}dois mil e dezenove {% elif form.data_banca.year == 2020 %}dois mil e vinte {% elif form.data_banca.year == 2021 %}dois mil e vinte e um {% elif form.data_banca.year == 2022 %}dois mil e vinte e dois {% elif form.data_banca.year == 2023 %}dois mil e vinte e três {% elif form.data_banca.year == 2024 %}dois mil e vinte e quatro {% elif form.data_banca.year == 2025 %}dois mil e vinte e cinco {% elif form.data_banca.year == 2026 %}dois mil e vinte e seis {% elif form.data_banca.year == 2027 %}dois mil e vinte e sete {% elif form.data_banca.year == 2028 %}dois mil e vinte e oito {% elif form.data_banca.year == 2029 %}dois mil e vinte e nove {% else %}dois mil e trinta{% endif %}, &Agrave;S {{form.hora_inicio}}H, REALIZOU-SE A DEFESA P&Uacute;BLICA DO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %}RELAT&Oacute;RIO T&Eacute;CNICO CIENT&Iacute;FICO{% else %}TRABALHO DE CONCLUS&Atilde;O DE CURSO{% endif %} DOS (AS) ALUNO (AS) <strong>{{form.titulo_tcc.aluno}}</strong> {% if form.titulo_tcc.aluno2 == None %}{% else %}<strong>{{form.titulo_tcc.aluno2}},</strong>{% endif %} {% if form.titulo_tcc.aluno3 == None %}{% else %}<strong>{{form.titulo_tcc.aluno3}},</strong>{% endif %} {% if form.titulo_tcc.aluno4 == None %}{% else %}<strong>{{form.titulo_tcc.aluno4}},</strong>{% endif %} COMO REQUISITO PARA OBTEN&Ccedil;&Atilde;O DO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} GRAU DE TECNÓLOGO {% else %} GRAU DE BACHAREL {% endif %} EM {{form.titulo_tcc.aluno.curso}}, SOB O T&Iacute;TULO: <strong>&ldquo;</strong><strong>{{form.titulo_tcc.titulo_tcc}}</strong><strong>&rdquo;</strong>, ONDE PARTICIPARAM COMO MEMBROS DA BANCA EXAMINADORA OS PROFESSORES: PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}} (Orientador/Presidente da Banca), PROF. {% if object.examinador_1.examinador.formacao == None %}{% else %}{{object.examinador_1.examinador.formacao}}. {% endif %}{{form.examinador_1.examinador}} (EXAMINADOR (A) 1) E PROF. {% if object.examinador_2.examinador.formacao == None %}{% else %}{{object.examinador_2.examinador.formacao}}. {% endif %}{{form.examinador_2.examinador}} &nbsp;(EXAMINADOR (A) 2). DE ACORDO COM OS RESULTADOS OBTIDOS, A BANCA EXAMINADORA CONSIDEROU O (A) ALUNO (A) ________________, COM MÉDIA _______, DE ACORDO COM AS NOTAS ABAIXO DISCRIMINADAS:</p>
+<p style="text-align: center; text-transform: uppercase;">Examinador(A) 1 :&nbsp;<span style="text-decoration: underline;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p style="text-align: center; text-transform: uppercase;">Examinador(A) 2 :&nbsp;<span style="text-decoration: underline;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p style="text-align: center; text-transform: uppercase;">Orientador(A) &nbsp; &nbsp; &nbsp;: &nbsp;<span style="text-decoration: underline;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p style="text-align: center; text-transform: uppercase;">M&eacute;dia &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : <span style="text-decoration: underline;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="text-decoration: underline;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p style="text-align: justify; line-height: 180%; text-transform: uppercase;">E, PARA CONSTAR EU, PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}}, LAVREI A PRESENTE ATA QUE VAI POR MIM ASSINADA NA QUALIDADE DE MEMBRO/PRESIDENTE DE BANCA E SUBMETIDA &Agrave; APRECIA&Ccedil;&Atilde;O DOS PRESENTES. JO&Atilde;O PESSOA, &nbsp;{{form.data_banca}}.</p>
+<h5 style="text-align: justify;">BANCA EXAMINADORA:</h5>
+<center><span style="text-decoration: overline; text-transform: uppercase;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Orientador(a) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></center><br><br>
+<center><span style="text-decoration: overline; text-transform: uppercase;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Examinador(a) 1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></center><br><br>
+<center><span style="text-decoration: overline; text-transform: uppercase;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Examinador(a) 2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></center>
+<div style="page-break-after: always"></div>
+
+<h3><img style="width: 15%; margin-left: 42%;" src="{% static 'logo.jpg' %}" alt="" /></h3>
+<center><strong>CENTRO UNIVERSIT&Aacute;RIO DE JO&Atilde;O PESSOA</strong><br>
+<strong style="text-transform: uppercase;">CURSO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} TECNOLÓGICO EM {% else %} DE BACHARELADO EM {% endif %} {{form.titulo_tcc.aluno.curso}}</strong><br>
+<span style="text-decoration: overline;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></span></center>
+<div style="background-color: #E5E4E2;">
+<spam style="text-align: center; font-size:18;"><strong> FORMULÁRIO PARA AVALIAÇÃO DO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %} – VIA ORIENTADOR (A)</strong></spam>
+</div>
+<style>
+table, th, td{
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+</style>
+<br>
+<table>
+<tbody>
+<tr>
+<td width="700">
+<spam><strong>ALUNO (A): </strong>{{ form.titulo_tcc.aluno }} {% if form.titulo_tcc.aluno2 == None %} {% else %} , {{ form.titulo_tcc.aluno2 }} {% endif %} {% if form.titulo_tcc.aluno3 == None %} {% else %} , {{ form.titulo_tcc.aluno3 }} {% endif %} {% if form.titulo_tcc.aluno4 == None %} {% else %} , {{ form.titulo_tcc.aluno4 }} {% endif %}</spam><br>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>T&Iacute;TULO:</strong> {{form.titulo_tcc.titulo_tcc}}</p>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>ORIENTADOR (A):</strong> PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}}</p>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>AVALIADOR (A):</strong> PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<table style="margin-left: auto; margin-right: auto;" border="1">
+<tbody>
+<tr>
+<td colspan="2" width="300">
+<p><strong>CRIT&Eacute;RIOS DE AVALIA&Ccedil;&Atilde;O</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>TRABALHO ESCRITO (70% DA AVALIA&Ccedil;&Atilde;O)</strong></p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p><strong>NOTAS 0 - 10</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>ESTRUTURA L&Oacute;GICA DO CONTE&Uacute;DO DO TRABALHO (CLAREZA, SEQU&Ecirc;NCIA, ETC)</p>
+<td width="111">
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>REFERENCIAL TE&Oacute;RICO<br>
+(COER&Ecirc;NCIA COM A PESQUISA REALIZADA, ETC)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>METODOLOGIA<br>
+(M&Eacute;TODOS, T&Eacute;CNICAS, SEQU&Ecirc;NCIA DAS ETAPAS, ETC)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>OBJETIVIDADE<br>
+(CUMPRIMENTOS DOS OBJETIVOS PROPOSTOS)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p><strong>M&Eacute;DIA PARCIAL DAS NOTAS</strong> (NOTA TRABALHO ESCRITO/NTE)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>APRESENTA&Ccedil;&Atilde;O ORAL (30% DA AVALIA&Ccedil;&Atilde;O)</strong></p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p><strong>NOTAS 0 - 10</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>DOM&Iacute;NIO DO CONTE&Uacute;DO DURANTE A APRESENTA&Ccedil;&Atilde;O</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>ORGANIZA&Ccedil;&Atilde;O SEQUENCIAL DO CONTE&Uacute;DO, CLAREZA, OBJETIVIDADE E S&Iacute;NTESE</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p><strong>M&Eacute;DIA PARCIAL DAS NOTAS </strong>(NOTA APRESENTA&Ccedil;&Atilde;O ORAL/NAO)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>M&Eacute;DIA FINAL </strong>(NTE X 0,7 + NAO X 0,3)</p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<spam><strong>OBSERVA&Ccedil;&Otilde;ES:</strong></spam>
+<ol>
+<li "text-align: justify;">OS CAMPOS DO TRABALHO ESCRITO DEVER&Atilde;O SER PREENCHIDOS ANTERIORMENTE A APRESENTA&Ccedil;&Atilde;O DURANTE A LEITURA DO TEXTO.</li>
+<li "text-align: justify;">OS CAMPOS DA APRESENTA&Ccedil;&Atilde;O ORAL DEVER&Atilde;O SER PREENCHIDOS NA SALA &ndash; DURANTE A APRESENTA&Ccedil;&Atilde;O DO ALUNO.</li>
+<li "text-align: justify;"><strong>A NOTA N&Atilde;O DEVE SER DIVULGADA PARA O (A) ALUNO (A). O MESMO DEVE SER APENAS INFORMADO SE SEU TRABALHO FOI APROVADO OU N&Atilde;O.</strong></li>
+</ol>
+<table border="1">
+<tbody>
+<tr>
+<td style="width: 703px;">
+<center><spam style="text-align: center;"><strong>PARECER DO (A) AVALIADOR (A)</strong></spam></center>
+</td>
+</tr>
+<tr style="text-align: center;">
+<td style="width: 703px;">
+<spam>&nbsp;</spam><br><br>
+</td>
+</tr>
+</tbody>
+</table>
+<center><spam>JO&Atilde;O PESSOA, {{form.data_banca}}.<br><br>
+PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}}</spam></center>
+<div style="page-break-after: always"></div>
+
+<h3><img style="width: 15%; margin-left: 42%;" src="{% static 'logo.jpg' %}" alt="" /></h3>
+<center><strong>CENTRO UNIVERSIT&Aacute;RIO DE JO&Atilde;O PESSOA</strong><br>
+<strong style="text-transform: uppercase;">CURSO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} TECNOLÓGICO EM {% else %} DE BACHARELADO EM {% endif %} {{form.titulo_tcc.aluno.curso}}</strong><br>
+<span style="text-decoration: overline;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></span></center>
+<div style="background-color: #E5E4E2;">
+<spam style="text-align: center; font-size:18;"><strong> FORMULÁRIO PARA AVALIAÇÃO DO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %} – VIA EXAMINADOR(A) 1</strong></spam>
+</div>
+<style>
+table, th, td{
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+</style>
+<br>
+<table>
+<tbody>
+<tr>
+<td width="700">
+  <spam><strong>ALUNO (A): </strong>{{ form.titulo_tcc.aluno }} {% if form.titulo_tcc.aluno2 == None %} {% else %} , {{ form.titulo_tcc.aluno2 }} {% endif %} {% if form.titulo_tcc.aluno3 == None %} {% else %} , {{ form.titulo_tcc.aluno3 }} {% endif %} {% if form.titulo_tcc.aluno4 == None %} {% else %} , {{ form.titulo_tcc.aluno4 }} {% endif %}</spam><br>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>T&Iacute;TULO:</strong> {{form.titulo_tcc.titulo_tcc}}</p>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>ORIENTADOR (A):</strong> PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}}</p>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>AVALIADOR (A):</strong> PROF. {% if object.examinador_1.examinador.formacao == None %}{% else %}{{object.examinador_1.examinador.formacao}}. {% endif %}{{form.examinador_1.examinador}}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<table style="margin-left: auto; margin-right: auto;" border="1">
+<tbody>
+<tr>
+<td colspan="2" width="300">
+<p><strong>CRIT&Eacute;RIOS DE AVALIA&Ccedil;&Atilde;O</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>TRABALHO ESCRITO (70% DA AVALIA&Ccedil;&Atilde;O)</strong></p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p><strong>NOTAS 0 - 10</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>ESTRUTURA L&Oacute;GICA DO CONTE&Uacute;DO DO TRABALHO (CLAREZA, SEQU&Ecirc;NCIA, ETC)</p>
+<td width="111">
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>REFERENCIAL TE&Oacute;RICO<br>
+(COER&Ecirc;NCIA COM A PESQUISA REALIZADA, ETC)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>METODOLOGIA<br>
+(M&Eacute;TODOS, T&Eacute;CNICAS, SEQU&Ecirc;NCIA DAS ETAPAS, ETC)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>OBJETIVIDADE<br>
+(CUMPRIMENTOS DOS OBJETIVOS PROPOSTOS)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p><strong>M&Eacute;DIA PARCIAL DAS NOTAS</strong> (NOTA TRABALHO ESCRITO/NTE)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>APRESENTA&Ccedil;&Atilde;O ORAL (30% DA AVALIA&Ccedil;&Atilde;O)</strong></p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p><strong>NOTAS 0 - 10</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>DOM&Iacute;NIO DO CONTE&Uacute;DO DURANTE A APRESENTA&Ccedil;&Atilde;O</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>ORGANIZA&Ccedil;&Atilde;O SEQUENCIAL DO CONTE&Uacute;DO, CLAREZA, OBJETIVIDADE E S&Iacute;NTESE</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p><strong>M&Eacute;DIA PARCIAL DAS NOTAS </strong>(NOTA APRESENTA&Ccedil;&Atilde;O ORAL/NAO)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>M&Eacute;DIA FINAL </strong>(NTE X 0,7 + NAO X 0,3)</p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<spam><strong>OBSERVA&Ccedil;&Otilde;ES:</strong></spam>
+<ol>
+<li "text-align: justify;">OS CAMPOS DO TRABALHO ESCRITO DEVER&Atilde;O SER PREENCHIDOS ANTERIORMENTE A APRESENTA&Ccedil;&Atilde;O DURANTE A LEITURA DO TEXTO.</li>
+<li "text-align: justify;">OS CAMPOS DA APRESENTA&Ccedil;&Atilde;O ORAL DEVER&Atilde;O SER PREENCHIDOS NA SALA &ndash; DURANTE A APRESENTA&Ccedil;&Atilde;O DO ALUNO.</li>
+<li "text-align: justify;"><strong>A NOTA N&Atilde;O DEVE SER DIVULGADA PARA O (A) ALUNO (A). O MESMO DEVE SER APENAS INFORMADO SE SEU TRABALHO FOI APROVADO OU N&Atilde;O.</strong></li>
+</ol>
+<table border="1">
+<tbody>
+<tr>
+<td style="width: 703px;">
+<center><spam style="text-align: center;"><strong>PARECER DO (A) AVALIADOR (A)</strong></spam></center>
+</td>
+</tr>
+<tr style="text-align: center;">
+<td style="width: 703px;">
+<p>&nbsp;</p><br>
+</td>
+</tr>
+</tbody>
+</table>
+<center><spam>JO&Atilde;O PESSOA, {{form.data_banca}}.<br><br>
+PROF. {% if object.examinador_1.examinador.formacao == None %}{% else %}{{object.examinador_1.examinador.formacao}}. {% endif %}{{form.examinador_1.examinador}}</spam></center>
+<div style="page-break-after: always"></div>
+
+<h3><img style="width: 15%; margin-left: 42%;" src="{% static 'logo.jpg' %}" alt="" /></h3>
+<center><strong>CENTRO UNIVERSIT&Aacute;RIO DE JO&Atilde;O PESSOA</strong><br>
+<strong style="text-transform: uppercase;">CURSO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} TECNOLÓGICO EM {% else %} DE BACHARELADO EM {% endif %} {{form.titulo_tcc.aluno.curso}}</strong><br>
+<span style="text-decoration: overline;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></span></center>
+<div style="background-color: #E5E4E2;">
+<spam style="text-align: center; font-size:18;"><strong> FORMULÁRIO PARA AVALIAÇÃO DO {% if form.titulo_tcc.aluno.curso != 'Ciência da Computação' %} RTC {% else %} TCC {% endif %} – VIA EXAMINADOR(A) 2</strong></spam>
+</div>
+<style>
+table, th, td{
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+</style>
+<br>
+<table>
+<tbody>
+<tr>
+<td width="700">
+  <spam><strong>ALUNO (A): </strong>{{ form.titulo_tcc.aluno }} {% if form.titulo_tcc.aluno2 == None %} {% else %} , {{ form.titulo_tcc.aluno2 }} {% endif %} {% if form.titulo_tcc.aluno3 == None %} {% else %} , {{ form.titulo_tcc.aluno3 }} {% endif %} {% if form.titulo_tcc.aluno4 == None %} {% else %} , {{ form.titulo_tcc.aluno4 }} {% endif %}</spam><br>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>T&Iacute;TULO:</strong> {{form.titulo_tcc.titulo_tcc}}</p>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>ORIENTADOR (A):</strong> PROF. {% if object.titulo_tcc.orientador.formacao == None %}{% else %}{{object.titulo_tcc.orientador.formacao}}. {% endif %}{{form.titulo_tcc.orientador}}</p>
+</td>
+</tr>
+<tr>
+<td width="700">
+<p><strong>AVALIADOR (A):</strong> PROF. {% if object.examinador_2.examinador.formacao == None %}{% else %}{{object.examinador_2.examinador.formacao}}. {% endif %}{{form.examinador_2.examinador}}</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<table style="margin-left: auto; margin-right: auto;" border="1">
+<tbody>
+<tr>
+<td colspan="2" width="300">
+<p><strong>CRIT&Eacute;RIOS DE AVALIA&Ccedil;&Atilde;O</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>TRABALHO ESCRITO (70% DA AVALIA&Ccedil;&Atilde;O)</strong></p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p><strong>NOTAS 0 - 10</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>ESTRUTURA L&Oacute;GICA DO CONTE&Uacute;DO DO TRABALHO (CLAREZA, SEQU&Ecirc;NCIA, ETC)</p>
+<td width="111">
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>REFERENCIAL TE&Oacute;RICO<br>
+(COER&Ecirc;NCIA COM A PESQUISA REALIZADA, ETC)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>METODOLOGIA<br>
+(M&Eacute;TODOS, T&Eacute;CNICAS, SEQU&Ecirc;NCIA DAS ETAPAS, ETC)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>OBJETIVIDADE<br>
+(CUMPRIMENTOS DOS OBJETIVOS PROPOSTOS)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p><strong>M&Eacute;DIA PARCIAL DAS NOTAS</strong> (NOTA TRABALHO ESCRITO/NTE)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>APRESENTA&Ccedil;&Atilde;O ORAL (30% DA AVALIA&Ccedil;&Atilde;O)</strong></p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p><strong>NOTAS 0 - 10</strong></p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>DOM&Iacute;NIO DO CONTE&Uacute;DO DURANTE A APRESENTA&Ccedil;&Atilde;O</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p>ORGANIZA&Ccedil;&Atilde;O SEQUENCIAL DO CONTE&Uacute;DO, CLAREZA, OBJETIVIDADE E S&Iacute;NTESE</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="436">
+<p><strong>M&Eacute;DIA PARCIAL DAS NOTAS </strong>(NOTA APRESENTA&Ccedil;&Atilde;O ORAL/NAO)</p>
+</td>
+<td width="111">
+<p>&nbsp;</p>
+</td>
+</tr>
+<td width="436" style="background-color: #E5E4E2;">
+<p><strong>M&Eacute;DIA FINAL </strong>(NTE X 0,7 + NAO X 0,3)</p>
+</td>
+<td width="111" style="background-color: #E5E4E2;">
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table><br>
+
+<spam><strong>OBSERVA&Ccedil;&Otilde;ES:</strong></spam>
+<ol>
+<li "text-align: justify;">OS CAMPOS DO TRABALHO ESCRITO DEVER&Atilde;O SER PREENCHIDOS ANTERIORMENTE A APRESENTA&Ccedil;&Atilde;O DURANTE A LEITURA DO TEXTO.</li>
+<li "text-align: justify;">OS CAMPOS DA APRESENTA&Ccedil;&Atilde;O ORAL DEVER&Atilde;O SER PREENCHIDOS NA SALA &ndash; DURANTE A APRESENTA&Ccedil;&Atilde;O DO ALUNO.</li>
+<li "text-align: justify;"><strong>A NOTA N&Atilde;O DEVE SER DIVULGADA PARA O (A) ALUNO (A). O MESMO DEVE SER APENAS INFORMADO SE SEU TRABALHO FOI APROVADO OU N&Atilde;O.</strong></li>
+</ol>
+<table border="1">
+<tbody>
+<tr>
+<td style="width: 703px;">
+<p style="text-align: center;"><strong>PARECER DO (A) AVALIADOR (A)</strong></p>
+</td>
+</tr>
+<tr style="text-align: center;">
+<td style="width: 703px;">
+<p>&nbsp;</p><br>
+</td>
+</tr>
+</tbody>
+</table>
+<center><spam>JO&Atilde;O PESSOA, {{form.data_banca}}.<br><br>
+PROF. {% if object.examinador_2.examinador.formacao == None %}{% else %}{{object.examinador_2.examinador.formacao}}. {% endif %}{{form.examinador_2.examinador}}</spam></center>
+<div style="page-break-after: always"></div>
+</body>

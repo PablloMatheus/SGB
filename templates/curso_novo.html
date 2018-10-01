@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cadastrar Curso{% endblock %}
+
+{% block content %}
+
+<!-- CSS -->
+
+<style media="screen">
+  #curson{
+    background-color:#5f6c72;
+  }
+  #cursotexn{
+    color: white;
+  }
+  /*#professouln{
+      border-top: 1px #222 solid;
+      display: block;
+  }*/
+
+  /*#professouln li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }*/
+  #professoul{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #professoul li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+
+</style>
+<div class="container animated fadeIn">
+<div class="center" id="show">
+<!-- <center class="container animated fadeIn" id="show"> -->
+      <form method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                <div id="modal2" class="modal">
+                    <div class="modal-content center">
+                      <h5>Atenção!</h5><br>
+                      <div class="center">
+                        <span>{{ error|escape }}</span>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+      <h6 style="margin-top:2%">Cadastrar Curso</h6>
+      <span class="center">Dados do curso</span>
+      <div class="card-panel z-depth-2">
+        <div class="input-field">
+          {{form.curso_nome}}
+          <label for="{{form.curso_nome.id_for_label}}">Nome do Curso <span style="color:red">*</span></label>
+        </div>
+        <div class="input-field">
+          <select name="coordenador" id="id_coordenador">
+            <option value="professor.pk" disabled selected>---------</option>
+            {% for professor in professor %}
+            <option value="{{professor.pk}}">{{professor.professor_nome}}</option>
+            {% endfor %}
+          </select>
+          <label>Coordenador do curso <span id="valcoordenador" style="color:red">*</span></label>
+        </div>
+</div>
+</div>
+<div class="center">
+    <button class="btn blue waves-effect waves-light" type="submit" name="btn" value="s" id="buttonform">Salvar</button>
+    <button class="btn teal waves-effect waves-light" name="btn5" type="submit" id="buttonform" >Salvar e Adicionar Outro</button>
+</div><br>
+</div>
+
+</form>
+
+
+{% if sucess_message %}
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Sucesso!</h5><br>
+        <div class="center">
+          <span>{{sucess_message}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+      </div>
+  </div>
+{% endif %}
+
+<script type="text/javascript">
+document.getElementById("professoul").classList.remove('child-menu');
+document.getElementById("professomenu").classList.remove('master-menu');
+</script>
+
+{% endblock %}

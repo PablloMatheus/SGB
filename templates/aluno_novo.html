@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cadastrar Aluno{% endblock %}
+
+{% block content %}
+<style media="screen">
+  #alunon{
+    background-color:#5f6c72;
+  }
+  #alunotexn{
+    color: white;
+  }
+
+  #alunouln{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #alunouln li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+  #alunoul{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #alunoul li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+</style>
+<!-- <div class="container animated fadeIn" id="show" style="display: none"> -->
+     <form method="POST">
+         {% csrf_token %}
+         {% if form.errors %}
+             {% for field in form %}
+                 {% for error in field.errors %}
+                 <div id="modal2" class="modal">
+                     <div class="modal-content center">
+                       <h5>Atenção!</h5><br>
+                       <div class="center">
+                         <span>{{ error|escape }}</span>
+                       </div>
+                     </div>
+                     <div class="modal-footer">
+                       <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+                     </div>
+                 </div>
+                 {% endfor %}
+             {% endfor %}
+         {% endif %}
+      <div class="container animated fadeIn" id="show" style="display: none">
+        <div class="center">
+          <h6 style="margin-top:2%">Cadastrar Aluno</h6>
+          <span>Ficha de cadastro</span>
+        </div>
+        <div class="card-panel z-depth-1 row">
+          <div class="input-field" >
+            <input type="text" name="aluno_nome" value="" required="" id="id_aluno_nome">
+             <label for="{{form.aluno_nome.id_for_label}}">Nome completo <span id="valNome" style="color:red">*</span></label>
+           </div>
+           <div class="input-field" >
+             <input type="text" name="aluno_matricula" value="" maxlength="10" required="" id="id_aluno_matricula">
+             <label for="{{form.aluno_matricula.id_for_label}}">Matrícula <span id="valMatricula" style="color:red">*</span></label>
+           </div>
+           <div class="input-field">
+             <input type="text" name="aluno_telefone" value="" maxlength="11" id="id_aluno_telefone">
+              <label for="{{form.aluno_telefone.id_for_label}}">Telefone <span id="valTelefone"></span></label>
+           </div>
+            <div class="input-field" >
+              <input type="text" name="aluno_email" value="" maxlength="50" id="id_aluno_email">
+               <label for="{{form.aluno_email.id_for_label}}" data-error="wrong">Email <span id="valEmail"></span></label>
+            </div>
+              <div class='row'>
+                <div class='input-field col s6'>
+                  <select name="curso" id='id_curso'>
+                    <option value="" disabled selected>Selecione Curso</option>
+                    <option value="Ciência da Computação">Ciência da Computação</option>
+                    <option value="Sistemas para Internet">Sistemas para Internet</option>
+                    <option value="Gestão da Tecnologia da Informação">Gestão da Tecnologia da Informação</option>
+                    <option value="Redes de Computadores">Redes de Computadores</option>
+                  </select>
+                  <label>Curso <span id="valCurso" style="color:red">*</span></label>
+                </div>
+                <div class='input-field col s6'>
+                  <select name="periodo" id="id_periodo">
+                    <option value="" disabled selected>Selecione Período</option>
+                    <!-- <option value="1° ">P1</option>
+                    <option value="P2">P2</option>
+                    <option value="P3">P3</option>
+                    <option value="P4">P4</option>
+                    <option value="P6">P6</option> -->
+                    <option value="P5">P5</option>
+                    <option value="P7">P7</option>
+                    <option value="P8">P8</option>
+                  </select>
+                  <label>Período <span id="valPeriodo" style="color:red">*</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+          <button class="btn blue waves-effect waves-light" type="submit" onclick="return Validate()" name="btn" value="s" id="buttonform">Salvar</button>
+          <button class="btn teal waves-effect waves-light" name="btn2" type="submit" onclick="return Validate()" id="buttonform2" >Salvar e Adicionar Outro</button>
+        </div>
+     </form>
+   </div>
+
+
+   {% if sucess_message %}
+     <!-- Modal Structure -->
+     <div id="modal2" class="modal">
+         <div class="modal-content center">
+           <h5>Sucesso!</h5><br>
+           <div class="center">
+             <span>{{sucess_message}}</span>
+           </div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+         </div>
+     </div>
+   {% endif %}
+
+
+<script type="text/javascript">
+
+function Validate(){
+  var nome = document.getElementById("id_aluno_nome").value;
+  if (nome == ""){
+    Materialize.toast('O campo de Nome deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valNome').html('<b>*</b>').css('color','red');
+    document.getElementById("id_aluno_nome").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_aluno_nome").value)){
+    Materialize.toast('O Nome deve conter apenas letras',2000,'rounded');
+    $('#valNome').html('<b>*</b>').css('color','red');
+    document.getElementById("id_aluno_nome").focus();
+    return false;
+  }
+  var password = document.getElementById("id_aluno_matricula").value;
+  if (password == ""){
+    Materialize.toast('O campo de Matricula deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valMatricula').html('<b>*</b>').css('color','red');
+    document.getElementById("id_aluno_matricula").focus();
+    return false;
+  }
+  if (/[^\d]/.test(document.getElementById("id_aluno_matricula").value)){
+    Materialize.toast('A Matrícula deve conter apenas números',2000,'rounded');
+    $('#valMatricula').html('<b>*</b>').css('color','red');
+    document.getElementById("id_aluno_matricula").focus();
+    return false;
+  }
+  if (password.search(/\d/) == -1) {
+    Materialize.toast('A Matrícula deve conter apenas números', 2000, 'rounded');
+    $('#valMatricula').html('<b>*</b>').css('color', 'red');
+    document.getElementById("id_aluno_matricula").focus();
+    return false;
+  }
+  if (password.length < 10) {
+    Materialize.toast('A Matrícula deve conter pelo menos 10 digitos', 2000, 'rounded');
+    $('#valMatricula').html('<b>*</b>').css('color', 'red');
+    document.getElementById("id_aluno_matricula").focus();
+    return false;
+  }
+  // var password = document.getElementById("id_aluno_telefone").value;
+  // if (password == ""){
+  //   Materialize.toast('O campo de Telefone deve ser preenchido para prosseguir',2000,'rounded');
+  //   $('#valTelefone').html('<b>*</b>').css('color','red');
+  //   document.getElementById("id_aluno_telefone").focus();
+  //   return false;
+  // }
+  // if (/[^\d]/.test(document.getElementById("id_aluno_telefone").value)){
+  //   Materialize.toast('O Telefone deve conter apenas números',2000,'rounded');
+  //   $('#valTelefone').html('<b>*</b>').css('color','red');
+  //   document.getElementById("id_aluno_telefone").focus();
+  //   return false;
+  // }
+  // if (password.length < 11){
+  //   Materialize.toast('O campo de Telefone deve conter 11 digitos',2000,'rounded');
+  //   $('#valTelefone').html('<b>*</b>').css('color','red');
+  //   document.getElementById("id_aluno_telefone").focus();
+  //   return false;
+  // }
+  // if (password.search(/\d/) == -1) {
+  //   Materialize.toast('O campo de Telefone deve conter apenas números', 2000, 'rounded');
+  //   $('#valTelefone').html('<b>*</b>').css('color', 'red');
+  //   document.getElementById("id_aluno_telefone").focus();
+  //   return false;
+  // }
+  // var password = document.getElementById("id_aluno_email").value;
+  // if(password ==""){
+  //   Materialize.toast('O campo de Email deve ser preenchido para prosseguir',2000,'rounded');
+  //   $('#valEmail').html('<b>*</b>').css('color','red');
+  //   document.getElementById("id_aluno_email").focus();
+  //   return false;
+  // }
+  // if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById("id_aluno_email").value)){
+  //   Materialize.toast('O campo email está inválido',2000,'rounded');
+  //   $('#valEmail').html('<b>*</b>').css('color','red');
+  //   document.getElementById("id_aluno_email").focus();
+  //   return false;
+  // }
+  var curso = document.getElementById("id_curso").value;
+  if(curso ==""){
+    Materialize.toast('O campo de Curso deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valCurso').html('<b>*</b>').css('color','red');
+    document.getElementById("id_curso").focus();
+    return false;
+  }
+  var periodo = document.getElementById("id_periodo").value;
+  if(periodo ==""){
+    Materialize.toast('O campo de Período deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valPeriodo').html('<b>*</b>').css('color','red');
+    document.getElementById("id_periodo").focus();
+    return false;
+  }
+  if (curso == "Ciência da Computação" && periodo == "P5") {
+    Materialize.toast('Período inválido!', 2000, 'rounded');
+    // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+    return false;
+  }else {
+    if (curso == "Sistemas para Internet" && periodo == "P7" ||
+    curso == "Sistemas para Internet" && periodo == "P8") {
+      Materialize.toast('Período inválido!', 2000, 'rounded');
+      // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+      return false;
+    }else {
+      if (curso == "Gestão da Tecnologia da Informação" && periodo == "P7" ||
+      curso == "Gestão da Tecnologia da Informação" && periodo == "P8") {
+        Materialize.toast('Período inválido!', 2000, 'rounded');
+        // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+        return false;
+      }else {
+        if (curso == "Redes de Computadores" && periodo == "P7" ||
+        curso == "Redes de Computadores" && periodo == "P8") {
+          Materialize.toast('Período inválido!', 2000, 'rounded');
+          // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
+
+$(document).ready(function(){
+
+  // $('#id_aluno_email').on("change keyup paste", function(){
+  //   $('#valEmail').html('');
+  // })
+
+  $('#id_aluno_nome').on("change keyup paste", function(){
+    $('#valNome').html('');
+  })
+
+  $('#id_aluno_matricula').on("change keyup paste", function(){
+    $('#valMatricula').html('');
+  })
+
+  // $('#id_aluno_telefone').on("change keyup paste",function(){
+  //   $('#valTelefone').html('');
+  // })
+  $('#id_curso').on("change keyup paste",function(){
+    $('#valCurso').html('');
+  })
+  $('#id_periodo').on("change keyup paste",function(){
+    $('#valPeriodo').html('');
+  })
+}
+)
+
+  document.getElementById("alunoul").classList.remove('child-menu');
+  document.getElementById("alunomenu").classList.remove('master-menu');
+
+</script>
+{% endblock %}

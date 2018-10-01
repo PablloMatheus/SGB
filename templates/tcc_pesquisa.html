@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<div class="container">
+<h5>Lista de Trabalhos</h5>
+<form method="get">
+            <div class="input group col-md-3">
+                <div class="input-group h2">
+                    <input style="width: 200px" name="query" class="form-control" id="search" type="text" placeholder="Pesquisar Trabalhos" value="{{ request.GET.query }}">
+                    <span class="input-group-btn">
+                        <button class="material-icons" type="submit">search
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+<table class="striped card-panel z-depth-3">
+  <thead>
+    <tr>
+        <th>Trabalhos</th>
+        <th>Aluno</th>
+        <th>Orientador</th>
+    </tr>
+  </thead>
+  <tbody>
+        {% for tcc in object_list %}
+        <tr>
+            <td><a href="{% url 'tcc_update' tcc.id %}" style="font-size:15px;" class="black-text">{{tcc}}</a></td>
+            <td><a href="{% url 'tcc_update' tcc.id %}" style="font-size:15px;" class="black-text">{{tcc.aluno}}</a></td>
+            <td><a href="{% url 'tcc_update' tcc.id %}" style="font-size:15px;" class="black-text">{{tcc.orientador}}</a></td>
+        </tr>
+        {% empty %}
+        <td>
+        Não há trabalhos cadastrados nesse semestre.
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        {% endfor %}
+
+      </tbody>
+    </table>
+</div>
+
+{% endblock %}

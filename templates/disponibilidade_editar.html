@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Editar/Remover Disponibilidade{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="container animated fadeIn" id="show">
+      <form method="POST">
+       {% csrf_token %}
+      <div class="center">
+        <h6 style="margin-top:3%">Editar/Remover Disponibilidade</h6>
+        <span class="center">Ficha cadastrada</span>
+      </div>
+      <div class="card-panel z-depth-2 tooltipped" style="max-width:800px;" data-tooltip="Não é possível editar os campos por questões de integridade do sistema. Remova e marque a disponibilidade novamente!" data-position="top">
+        <div>
+         <div class="input-field">
+            <input disabled id="data" value="{{object.data}}"></input>
+            <label class="active" for="data">Data</label>
+         </div>
+        </div>
+        <div>
+          <div class="input-field">
+            <select disabled>
+              <option>{{object.examinador}}</option>
+            </select>
+            <label for="{{form.examinador.id_for_label}}">Examinador</label>
+          </div>
+        </div>
+        <div>
+          <div class="input-field">
+             <input disabled id="hora" value="{{object.hora_inicio}}"></input>
+             <label class="active" for="hora">Hora</label>
+          </div>
+        </div>
+      </div>
+        <div class="center">
+            <!-- <button class="btn blue waves-effect waves-light" type="submit" id="buttonform">Salvar Edição</button> -->
+            <!-- Modal Trigger -->
+            <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red" type="submit" id="buttonform">remover disponibilidade</a>
+        </div>
+  </form>
+</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <center>
+    <div class="modal-content">
+      <h5>Remover Disponibilidade</h5><br>
+      <p>Você tem certeza que quer remover essa informação <strong>{{object}}</strong> ?<br>
+        <strong style="color:red">Atenção!</strong> Essa ação apagará definitivamente esta informação do sistema.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <form method="POST" action="{% url 'sgb:disp_delete' object.id %}">
+        {% csrf_token %}
+        <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat" name="button">Remover</button>
+        <button type="button" class="modal-close waves-effect waves-red btn-flat" name="button">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

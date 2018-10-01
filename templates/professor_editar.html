@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Editar Professor{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="center">
+    <form method="POST">
+      {% csrf_token %}
+    <h6 style="margin-top:2%">Editar professor {{object}}</h6>
+    <span class="center">Ficha cadastrada</span><br>
+ <!-- Modal Structure 2 -->
+ <div id="modal3" class="modal">
+   <div class="modal-content">
+     <h4>Atenção</h4>
+     <p class='center'>Professor(a) não examinou ou orientou nenhuma banca ou trabalho.</p>
+   </div>
+   <div class="modal-footer">
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Continuar</a>
+   </div>
+ </div>
+
+    {% if bancas != None %}
+      <a class='dropdown-button3 btn-floating amber darken-4 waves-effect waves-light' href='#' data-activates='dropdown3'>
+        <i class="material-icons navicons">print</i>
+      </a>
+      <!-- Dropdown Structure -->
+      <ul id='dropdown3' class='dropdown-content' style="min-width: 120px;">
+        {% if cc == 1 and coordspicc != 1 %}
+          <li><a href="{% url 'sgb:declaracao' pk=object.id curso='cc' %}" value="Ciência da Computação" class="center">Declaração - Bancas CC</a></li>
+        {% elif cc == 1 and coordspicc == 1 %}
+          <li><a class='center modal-trigger grey-text' data-target="modal3" data-activates='dropdown3'>Declaração - Bancas CC</a></li>
+        {% endif %}
+        {% if gti == 1 and coordspicc != 1 %}
+          <li><a href="{% url 'sgb:declaracao' pk=object.id curso='gti' %}" value="Gestão da Tecnologia da Informação" class="center">Declaração - Bancas GTI</a></li>
+        {% elif gti == 1 and coordspicc == 1 %}
+            <li><a class='center modal-trigger grey-text' data-target="modal3" data-activates='dropdown3'>Declaração - Bancas GTI</a></li>
+        {% endif %}
+        {% if spi == 1 and coordspicc != 1 %}
+          <li><a href="{% url 'sgb:declaracao' pk=object.id curso='spi' %}" value="Sistemas para Internet" class="center">Declaração - Bancas SPI</a></li>
+        {% elif spi == 1 and coordspicc == 1 %}
+            <li><a class='center modal-trigger grey-text' data-target="modal3" data-activates='dropdown3'>Declaração - Bancas SPI</a></li>
+        {% endif %}
+        {% if rc == 1 and coordspicc != 1 %}
+          <li><a href="{% url 'sgb:declaracao' pk=object.id curso='rc' %}" value="Redes de Computadores" class="center">Declaração - Bancas Redes</a></li>
+        {% elif rc == 1 and coordspicc == 1 %}
+            <li><a class='center modal-trigger grey-text' data-target="modal3" data-activates='dropdown3'>Declaração - Bancas Redes</a></li>
+        {% endif %}
+      </ul>
+    {% else %}
+    <!-- <a class='modal-trigger btn-floating amber darken-4 waves-effect waves-light' href='#modal1' data-activates='dropdown3'>
+     <i class="material-icons navicons">print</i>
+    </a> -->
+    <a data-tooltip="Professor(a) não examinou ou orientou nenhuma banca ou trabalho" class='tooltipped btn-floating grey lighten-2 z-depth-0' href='#' data-activates='dropdown3'>
+      <i class="material-icons navicons">print</i>
+    </a>
+    {% endif %}
+    <div class="card-panel z-depth-2 animated fadeIn">
+       <div class="input-field" >
+          {{form.professor_nome}}
+          <label for="{{form.professor_nome.id_for_label}}">Nome</label>
+       </div>
+       <div class="input-field" >
+          {{form.professor_matricula}}
+          {% if form.professor_matricula.errors %}
+            <script type="text/javascript">
+              alert('Digite um número de matricula válido (Ex: 1700013238).')
+            </script>
+          {% endif %}
+          <label for="{{form.professor_matricula.id_for_label}}">Matrícula</label>
+       </div>
+        <div class="input-field">
+        {{form.area_de_atuacao}}
+         <label for="{{form.area_de_atuacao.id_for_label}}">Área de atuação</label>
+        </div>
+    </div>
+    <p class="center">Formação</p>
+    <div class="card-panel z-depth-2 animated fadeIn">
+       <div class="input-field" >
+          {{form.formacao}}
+          <label for="{{form.formacao.id_for_label}}">Formação</label>
+       </div>
+       <div class="input-field" >
+          {{form.graduacao}}
+          <label for="{{form.graduacao.id_for_label}}">Graduação</label>
+       </div>
+        <div class="input-field" >
+          {{form.especializacao}}
+          <label for="{{form.especializacao.id_for_label}}">Especialização</label>
+        </div>
+        <div class="input-field" >
+          {{form.mestrado}}
+          <label for="{{form.mestrado.id_for_label}}">Mestrado</label>
+        </div>
+        <div class="input-field" >
+          {{form.doutorado}}
+          <label for="{{form.doutorado.id_for_label}}">Doutorado</label>
+        </div>
+       <div class="name-style2">
+        <div class="input-field" >
+          {{form.pos_doutorado}}
+          <label for="{{form.pos_doutorado.id_for_label}}">Pós-doutorado</label>
+        </div>
+       </div>
+    </div>
+    <p class="center">Atividade de pesquisa</p>
+    <div class="card-panel z-depth-2 animated fadeIn">
+       <div class="input-field" >
+          {{form.area_de_conhecimentos}}
+          <label for="{{form.area_de_conhecimentos.id_for_label}}">Área de Conhecimentos</label>
+       </div>
+       <div class="input-field" >
+          {{form.area_de_orientacao}}
+          <label for="{{form.area_de_orientacao.id_for_label}}">Áreas de Orientação</label>
+       </div>
+        <div class="input-field">
+          {{form.info_relevante}}
+          <label for="{{form.info_relevante.id_for_label}}">Outras Informações Relevantes</label>
+        </div>
+    </div>
+      <div class="center">
+          <button class="btn blue waves-effect waves-light" type="submit" id="buttonform">salvar edição</button>
+          <!-- Modal Trigger -->
+          <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red" type="submit" id="buttonform">remover professor</a>
+      </div><br>
+</form>
+</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+<center>
+  <div class="modal-content">
+    <h5>Remover Professor</h5><br>
+    <p>Você tem certeza que quer remover o professor <strong>{{object}}</strong> ?<br>
+      <strong style="color:red">Atenção!</strong> Essa ação apagará definitivamente esta informação do sistema.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <form method="POST" action="{% url 'sgb:professor_delete' object.id %}">
+      {% csrf_token %}
+      <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat" name="button">Remover</button>
+      <button type="button" class="modal-close waves-effect waves-red btn-flat" name="button">Cancelar</button>
+    </form>
+  </div>
+</center>
+</div>
+{% endblock %}

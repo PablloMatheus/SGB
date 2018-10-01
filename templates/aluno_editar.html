@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Editar/Remover Aluno{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="center animated fadeIn">
+      <form method="POST">
+        {% csrf_token %}
+      <h6 style="margin-top:3%">Editar Aluno</h6>
+      <span class="center">Ficha cadastrada</span>
+      <div class="card-panel z-depth-2">
+        <div>
+         <div class="input-field" >
+            {{form.aluno_nome}}
+            <label for="{{form.aluno_nome.id_for_label}}">Nome completo</label>
+         </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.aluno_matricula}}
+            {% if form.aluno_matricula.errors %}
+              <script type="text/javascript">
+                alert('Digite um número de matricula válido (Ex: 1700013238).')
+              </script>
+            {% endif %}
+            <label for="{{form.aluno_matricula.id_for_label}}">Matrícula</label>
+         </div>
+        </div>
+        <div>
+          <div class="input-field">
+          {{form.aluno_telefone}}
+          {% if form.aluno_telefone.errors %}
+            <script type="text/javascript">
+              alert('Digite um número de telefone válido (Ex: 83987878787).')
+            </script>
+          {% endif %}
+           <label for="{{form.form.aluno_telefone.id_for_label}}">Telefone</label>
+          </div>
+        </div>
+        <div>
+         <div class="input-field" >
+            {{form.aluno_email}}
+            <label for="{{form.aluno_email.id_for_label}}">Email</label>
+         </div>
+        </div>
+        <div>
+          <div class="input-field">
+            {{form.curso}}
+            <label for="{{curso}}">Curso</label>
+          </div>
+        </div>
+        <div>
+          <div class="input-field">
+            {{form.periodo}}
+            <label for="{{periodo}}">Periodo</label>
+          </div>
+        </div>
+      </div>
+        <div class="center">
+            <button class="btn blue waves-effect waves-light" type="submit" onclick="return Validate()" id="buttonform">Salvar Edição</button>
+            <!-- Modal Trigger -->
+            <a href="#modal1" class="modal-trigger btn blue-grey darken-4 waves-effect waves-red" type="submit" id="buttonform">remover aluno</a>
+        </div><br>
+  </form>
+</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="center">
+    <div class="modal-content">
+      <h5>Remover Aluno</h5><br>
+      <p>Você tem certeza que quer remover o aluno <strong>{{object}}</strong> ?<br>
+        <strong style="color:red">Atenção!</strong> Essa ação apagará definitivamente esta informação do sistema.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <form method="POST" action="{% url 'sgb:aluno_delete' object.id %}">
+        {% csrf_token %}
+        <button type="submit" class="modal-action modal-close waves-effect waves-red btn-flat"  name="button">Remover</button>
+        <button type="button" class="modal-close waves-effect waves-green btn-flat" name="button">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+function Validate(){
+  var curso = document.getElementById("id_curso").value;
+  var periodo = document.getElementById("id_periodo").value;
+  if (curso == "Ciência da Computação" && periodo == "P5") {
+    Materialize.toast('Período inválido!', 2000, 'rounded');
+    // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+    return false;
+  }else {
+    if (curso == "Sistemas para Internet" && periodo == "P7" ||
+    curso == "Sistemas para Internet" && periodo == "P8") {
+      Materialize.toast('Período inválido!', 2000, 'rounded');
+      // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+      return false;
+    }else {
+      if (curso == "Gestão da Tecnologia da Informação" && periodo == "P7" ||
+      curso == "Gestão da Tecnologia da Informação" && periodo == "P8") {
+        Materialize.toast('Período inválido!', 2000, 'rounded');
+        // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+        return false;
+      }else {
+        if (curso == "Redes de Computadores" && periodo == "P7" ||
+        curso == "Redes de Computadores" && periodo == "P8") {
+          Materialize.toast('Período inválido!', 2000, 'rounded');
+          // $('#resultado').html('<b style="font-size:12px">Selecione examinadores diferentes</b>').css('color', 'red');
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
+
+</script>
+
+{% endblock %}

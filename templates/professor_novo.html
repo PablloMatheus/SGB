@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cadastrar Professor{% endblock %}
+
+{% block content %}
+
+<!-- CSS -->
+
+<style media="screen">
+  #professon{
+    background-color:#5f6c72;
+  }
+  #professotexn{
+    color: white;
+  }
+
+  #professouln{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #professouln li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+  #professoul{
+      border-top: 1px #222 solid;
+      display: block;
+  }
+
+  #professoul li a span{
+      margin-left: 20px;
+      font-size: 12px;
+  }
+</style>
+<div class='container'>
+<div class="center" id="show">
+<!-- <center class="container animated fadeIn" id="show"> -->
+      <form method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                <div id="modal2" class="modal">
+                    <div class="modal-content center">
+                      <h5>Atenção!</h5><br>
+                      <div class="center">
+                        <span>{{ error|escape }}</span>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+      <h6 style="margin-top:2%">Cadastrar Professor</h6>
+      <span class="center">Dados pessoais</span>
+      <div class="card-panel z-depth-2 animated fadeIn">
+        <div>
+         <div class="input-field" >
+           <input type="text" name="professor_nome" value="" required="" id="id_professor_nome">
+            <label for="{{form.professor_nome.id_for_label}}">Nome completo <span id="valNome" style="color:red">*</span></label>
+         </div>
+        </div>
+          <div class="input-field" >
+             <input type="text" name="professor_matricula" value="" maxlength="6" required="" id="id_professor_matricula">
+             <label for="{{form.professor_matricula.id_for_label}}">Matrícula <span id="valMatricula" style="color:red">*</span></label>
+          </div>
+          <div class="input-field">
+            <input type="text" name="area_de_atuacao" value="" id="id_area_de_atuacao">
+            <label for="{{form.area_de_atuacao.id_for_label}}">Área de atuação<span id="valArea"></span></label>
+          </div>
+      </div>
+      <p class="center">Formação</p>
+      <div class="card-panel z-depth-2 animated fadeIn">
+        <div>
+          <div class="input-field">
+            <select class="form-control" name="formacao" id="id_formacao" onchange="change()">
+              <option value="" disabled selected>---------</option>
+              <option value="ESP">ESPECIALISTA</option>
+              <option value="MS">MESTRE</option>
+              <option value="DR">DOUTOR</option>
+              <option value="PÓS Dr">PÓS DOUTORADO</option>
+            </select>
+            <label>Formação <span id="valForm" style="color:red">*</span></label>
+          </div>
+         <!-- <div class="input-field" >
+            <input type="text" name="formacao" value="" required="" id="id_formacao">
+            <label for="{{form.formacao.id_for_label}}">Formação</label>
+         </div> -->
+        </div>
+        <div>
+         <div class="input-field" >
+            <input type="text" name="graduacao" value="" id="id_graduacao">
+            <label for="{{form.graduacao.id_for_label}}">Graduação <span id="valGrad"></span></label>
+         </div>
+        </div>
+        <div>
+          <div class="input-field" >
+            <input type="text" name="especializacao" value="" id="id_especializacao">
+            <label for="{{form.especializacao.id_for_label}}">Especialização <span id="valEsp"></span></label>
+          </div>
+         </div>
+         <div>
+          <div class="input-field" id="div_mestrado">
+            <input type="text" name="mestrado" value="" id="id_mestrado">
+            <label for="{{form.mestrado.id_for_label}}">Mestrado <span id="valMes"></span></label>
+          </div>
+         </div>
+         <div>
+          <div class="input-field" id="div_doutorado">
+            <input type="text" name="doutorado" value="" id="id_doutorado">
+            <label for="{{form.doutorado.id_for_label}}">Doutorado <span id="valDou"></span></label>
+          </div>
+         </div>
+          <div class="input-field" id="div_pdoutorado">
+            <input type="text" name="pos_doutorado" value="" id="id_pos_doutorado">
+            <label for="{{form.pos_doutorado.id_for_label}}">Pós-doutorado <span id="valPos"></span></label>
+          </div>
+      </div>
+      <p class="center">Atividade de pesquisa</p>
+       <div class="card-panel z-depth-2 animated fadeIn">
+        <div>
+         <div class="input-field">
+           <input type="text" name="area_de_conhecimentos" value="" id="id_area_de_conhecimentos">
+            <label for="{{form.area_de_conhecimentos.id_for_label}}">Área de Conhecimentos <span id="valAreaCon"></span></label>
+         </div>
+         </div>
+         <div>
+         <div class="input-field" >
+           <input type="text" name="area_de_orientacao" value="" id="id_area_de_orientacao">
+            <label for="{{form.area_de_orientacao.id_for_label}}">Áreas de Orientação <span id="valAreaOri"></span></label>
+         </div>
+         </div>
+         <div>
+          <div class="input-field">
+            <input type="text" name="info_relevante" value="" id="id_info_relevante">
+            <label for="{{form.info_relevante.id_for_label}}">Outras Informações Relevantes <span id="valInfoRel"></span></label>
+          </div>
+        </div>
+      </div>
+        <div class="center">
+            <button class="btn blue waves-effect waves-light" onclick="return Validate()" type="submit" name="btn" value="s" id="buttonform">Salvar</button>
+            <button class="btn teal waves-effect waves-light" onclick="return Validate()" name="btn5" type="submit" id="buttonform" >Salvar e Adicionar Outro</button>
+        </div><br>
+  </form>
+</div>
+</div>
+</div>
+
+{% if sucess_message %}
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>Sucesso!</h5><br>
+        <div class="center">
+          <span>{{sucess_message}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+      </div>
+  </div>
+{% endif %}
+
+<script type="text/javascript">
+
+function change(obj){
+  var selectBox = document.getElementById("id_formacao");
+  var selected = selectBox.value;
+  if(selected === 'ESP'){
+    $('#div_mestrado').hide();
+    $('#div_doutorado').hide();
+    $('#div_pdoutorado').hide();
+  }
+  else if(selected ==='MS'){
+    $('#div_mestrado').show();
+    $('#div_doutorado').hide();
+    $('#div_pdoutorado').hide();
+  }
+  else if(selected ==='DR'){
+    $('#div_mestrado').show();
+    $('#div_doutorado').show();
+    $('#div_pdoutorado').hide();
+  }
+  else if(selected ==='PÓS Dr'){
+    $('#div_mestrado').show();
+    $('#div_doutorado').show();
+    $('#div_pdoutorado').show();
+  }
+}
+
+
+function Validate(){
+  var nome = document.getElementById("id_professor_nome").value;
+  if (nome == ""){
+    Materialize.toast('O campo de Nome deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valNome').html('<b>*</b>').css('color','red');
+    document.getElementById("id_professor_nome").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_professor_nome").value)){
+    Materialize.toast('O Nome deve conter apenas letras',2000,'rounded');
+    $('#valNome').html('<b>*</b>').css('color','red');
+    document.getElementById("id_professor_nome").focus();
+    return false;
+  }
+  var password = document.getElementById("id_professor_matricula").value;
+  if (password == ""){
+    Materialize.toast('O campo de Matricula deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valMatricula').html('<b>*</b>').css('color','red');
+    document.getElementById("id_professor_matricula").focus();
+    return false;
+  }
+  if (/[^\d]/.test(document.getElementById("id_professor_matricula").value)){
+    Materialize.toast('A Matrícula deve conter apenas números',2000,'rounded');
+    $('#valMatricula').html('<b>*</b>').css('color','red');
+    document.getElementById("id_professor_matricula").focus();
+    return false;
+  }
+  if (password.search(/\d/) == -1) {
+    Materialize.toast('A Matrícula do professor deve conter apenas números', 2000, 'rounded');
+    $('#valMatricula').html('<b>*</b>').css('color', 'red');
+    document.getElementById("id_professor_matricula").focus();
+    return false;
+  }
+  if (password.length != 6) {
+    Materialize.toast('A Matrícula do professor deve conter 6 dígitos', 2000, 'rounded');
+    $('#valMatricula').html('<b>*</b>').css('color', 'red');
+    document.getElementById("id_professor_matricula").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_area_de_atuacao").value)){
+    Materialize.toast('O campo de Área de atuação deve conter apenas letras',2000,'rounded');
+    $('#valArea').html('<b>*</b>').css('color','red');
+    document.getElementById("id_area_de_atuacao").focus();
+    return false;
+  }
+  var nome = document.getElementById("id_formacao").value;
+  if (nome == ""){
+    Materialize.toast('O campo de Formação deve ser preenchido para prosseguir',2000,'rounded');
+    $('#valForm').html('<b>*</b>').css('color','red');
+    document.getElementById("id_formacao").focus();
+    location.href = "#valForm"
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_graduacao").value)){
+    Materialize.toast('O campo de Graduação deve conter apenas letras',2000,'rounded');
+    $('#valGrad').html('<b>*</b>').css('color','red');
+    document.getElementById("id_graduacao").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_especializacao").value)){
+    Materialize.toast('O campo de Especialização deve conter apenas letras',2000,'rounded');
+    $('#valEsp').html('<b>*</b>').css('color','red');
+    document.getElementById("id_especializacao").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_mestrado").value)){
+    Materialize.toast('O campo de Mestrado deve conter apenas letras',2000,'rounded');
+    $('#valMes').html('<b>*</b>').css('color','red');
+    document.getElementById("id_mestrado").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_doutorado").value)){
+    Materialize.toast('O campo de Doutorado deve conter apenas letras',2000,'rounded');
+    $('#valDou').html('<b>*</b>').css('color','red');
+    document.getElementById("id_doutorado").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_pos_doutorado").value)){
+    Materialize.toast('O campo de Pós-doutorado deve conter apenas letras',2000,'rounded');
+    $('#valPos').html('<b>*</b>').css('color','red');
+    document.getElementById("id_pos_doutorado").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_area_de_conhecimentos").value)){
+    Materialize.toast('O campo de Área de Conhecimentos deve conter apenas letras',2000,'rounded');
+    $('#valAreaCon').html('<b>*</b>').css('color','red');
+    document.getElementById("id_area_de_conhecimentos").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_area_de_orientacao").value)){
+    Materialize.toast('O campo de Área de Orientação deve conter apenas letras',2000,'rounded');
+    $('#valAreaOri').html('<b>*</b>').css('color','red');
+    document.getElementById("id_area_de_orientacao").focus();
+    return false;
+  }
+  if (!/^[a-zA-Záàâãéèêíïóôõöúçñ\s]*$/i.test(document.getElementById("id_info_relevante").value)){
+    Materialize.toast('O campo de Informações Relevantes deve conter apenas letras',2000,'rounded');
+    $('#valInfoRel').html('<b>*</b>').css('color','red');
+    document.getElementById("id_info_relevante").focus();
+    return false;
+  }
+  return true;
+}
+$(document).ready(function(){
+
+  $('#div_mestrado').hide();
+  $('#div_doutorado').hide();
+  $('#div_pdoutorado').hide();
+
+  $('#id_professor_nome').on("change keyup paste", function(){
+    $('#valNome').html('');
+  })
+
+  $('#id_professor_matricula').on("change keyup paste", function(){
+    $('#valMatricula').html('');
+  })
+
+  $('#id_formacao').on("change keyup paste", function(){
+    $('#valForm').html('');
+  })
+})
+
+document.getElementById("professoul").classList.remove('child-menu');
+document.getElementById("professomenu").classList.remove('master-menu');
+</script>
+
+{% endblock %}

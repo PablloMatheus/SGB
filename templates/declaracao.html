@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Declaração</title>
+    <style type="text/css" media="print">
+      /*html, body { margin: 0; padding: 0; }
+      body { height: 11in;  width: 8.5in; }
+      .footer { position: absolute; bottom: 0; text-align: center;}*/
+      @media print
+      {
+          #footer {
+               display: block;
+               position: fixed;
+               bottom: 0;
+               width: 100%;
+          }
+      }
+      hr {
+        border: none;
+        height: 1px;
+        /* Set the hr color */
+        color: #333; /* old IE */
+        background-color: #333; /* Modern Browsers */
+      }
+    </style>
+  </head>
+  <body onload="window.print(); history.go(-1)">
+    <div>
+      <img src="{% static 'imagens/logo.jpg' %}" width="145"  style="margin-left:0; float: left; margin-top: 0px">
+      <img src="{% static 'imagens/SGB-declaracão1.png' %}" width="100" style="margin-right:0; float: right; margin-top: -5px" >
+    </div><br>
+
+    <div style="margin-top: 100px">
+      <hr><br>
+      <h2 style="text-align: center; font-family: Calibri; font-size: 27px">Declaração</h2>
+    </div><br>
+    <div style="text-align: justify; font-family: Calibri">
+      <p>DECLARO PARA FINS DE COMPROVAÇÃO CURRICULAR, QUE O <a style="text-transform: uppercase;">prof(a). {{object.formacao}}. {{object}}</a>, PARTICIPOU COMO ORIENTADOR(A)/EXAMINADOR(A) DE BANCA AVALIADORA NO {{text}} <a style="text-transform: uppercase;">{{coord.curso_nome}}</a>, DO CENTRO UNIVERSITÁRIO DE JOÃO PESSOA - UNIPÊ DOS SEGUINTES RELATÓRIOS TÉCNICOS, CONFORME DESCRIÇÃO ABAIXO:</p>
+      {% for banca in banca %}
+        <b>Titulo do Trabalho:</b>{{banca.titulo_tcc}}<br>
+        <b>Ano/Semestre da Defesa:</b> {{banca.data_banca.year}}.{% if banca.data_banca.month >= 6 %}2{% else %}1{% endif %}<br>
+        <b>Orientando (s):</b>{{banca.titulo_tcc.aluno}}<br>
+        <b>Orientador (a):</b>{{banca.titulo_tcc.orientador.formacao}}. {{banca.titulo_tcc.orientador}}<br>
+        <b>Membros Examinadores:</b>{{banca.examinador_1.examinador.formacao}}. {{banca.examinador_1.examinador}}, {{banca.examinador_2.examinador.formacao}}. {{banca.examinador_2.examinador}}<br><br>
+      {% endfor %}
+    </div>
+    {% if cont <= 4 %}
+      <p style="text-align: center">João Pessoa {{ time }}</p><br>
+      <P style="text-align: center">Prof(a). {{ coord.coordenador.formacao}}. {{coord.coordenador}} <br> Coordenador(a) dos Cursos Ubtech-TI</p>
+    {% endif %}
+    <div style="text-align: center" id="footer">
+      <p>Mantedora <img src="{% static 'imagens/SGB-Declaracao.png' %}"> Institutos Paraibanos de Educação - IPÊ</p>
+      <p style="font-size: 10px; margin-top: -15px">Campus Universitário - BR 230 - Km 22 - Fone: (83) 2106-9200 - Fax: (83) 3231-1130 - Cx Postal 318 - Cep: 58.053-000</p>
+      <p style="font-size: 10px; margin-top: -9px">João Pessoa - Paraíba - CNPJ: 08.679.557/0001-02 - email: info@unipe.br -  www.unipe.br</p>
+    </div>
+    <div style="page-break-after: always"></div>
+    {% if cont > 4 %}
+    <br><br>
+      <div>
+        <img src="{% static 'imagens/logo.jpg' %}" width="145"  style="margin-left:0; float: left; margin-top: 0px">
+        <img src="{% static 'imagens/SGB-declaracão1.png' %}" width="100" style="margin-right:0; float: right; margin-top: -5px" >
+      </div>
+
+      <div style="margin-top: 100px">
+        <hr><br>
+      </div>
+      {% for banca in bancap2 %}
+        <b>Titulo do Trabalho:</b>{{banca.titulo_tcc}}<br>
+        <b>Ano/Semestre da Defesa:</b> {{banca.data_banca.year}}.{% if banca.data_banca.month >= 6 %}2{% else %}1{% endif %}<br>
+        <b>Orientando (s):{{banca.titulo_tcc.aluno}}</b><br>
+        <b>Orientador (a):{{banca.titulo_tcc.orientador.formacao}}. {{banca.titulo_tcc.orientador}}</b><br>
+        <b>Membros Examinadores:</b>{{banca.examinador_1.examinador.formacao}}. {{banca.examinador_1.examinador}}, {{banca.examinador_2.examinador.formacao}}. {{banca.examinador_2.examinador}}<br><br>
+        <!-- {{ forloop.counter }} -->
+        {% if forloop.counter|divisibleby:"6" and not forloop.last %}
+          <div style="page-break-after: always"></div>
+          <div>
+            <img src="{% static 'imagens/logo.jpg' %}" width="145"  style="margin-left:0; float: left; margin-top: 0px">
+            <img src="{% static 'imagens/SGB-declaracão1.png' %}" width="100" style="margin-right:0; float: right; margin-top: -5px" >
+          </div><br>
+
+          <div style="margin-top: 100px">
+            <hr><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+      <p style="text-align: center">João Pessoa {{ time }}</p><br>
+      <P style="text-align: center">Prof(a). {{ coord.coordenador.formacao}}. {{coord.coordenador}} <br> Coordenador(a) dos Cursos Ubtech-TI</p>
+      <!-- <div style="text-align: center">
+        <p>Mantedora <img src="{% static 'imagens/SGB-Declaração.png' %}"> Institutos Paraibanos de Educação - IPÊ</p>
+        <p style="font-size: 10px; margin-top: -15px">Campus Universitário - BR 230 - Km 22 - Fone: (83) 2106-9200 - Fax: (83) 3231-1130 - Cx Postal 318 - Cep: 58.053-000</p>
+        <p style="font-size: 10px; margin-top: -9px">João Pessoa - Paraíba - CNPJ: 08.679.557/0001-02 - email: info@unipe.br -  www.unipe.br</p>
+      </div> -->
+    {% endif %}
+  </body>
+</html>
